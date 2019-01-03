@@ -1,28 +1,28 @@
 [
   {
     "type": "enum",
-    "desc": " 水平对齐的常量定义。\r\n",
+    "desc": " 垂直对齐的常量定义。\r\n",
     "consts": [
       {
         "desc": " 无效对齐方式。\r\n",
-        "name": "ALIGN_H_NONE"
+        "name": "ALIGN_V_NONE"
       },
       {
         "desc": " 居中对齐。\r\n",
-        "name": "ALIGN_H_CENTER"
+        "name": "ALIGN_V_MIDDLE"
       },
       {
-        "desc": " 左边对齐。\r\n",
-        "name": "ALIGN_H_LEFT"
+        "desc": " 顶部对齐。\r\n",
+        "name": "ALIGN_V_TOP"
       },
       {
-        "desc": " 右边对齐。\r\n",
-        "name": "ALIGN_H_RIGHT"
+        "desc": " 底部对齐。\r\n",
+        "name": "ALIGN_V_BOTTOM"
       }
     ],
     "header": "base/types_def.h",
-    "name": "align_h_t",
-    "prefix": "ALIGN_H_",
+    "name": "align_v_t",
+    "prefix": "ALIGN_V_",
     "annotation": {
       "scriptable": true
     },
@@ -503,7 +503,7 @@
     "events": [],
     "properties": [],
     "header": "base/assets_manager.h",
-    "desc": " 资源管理器。\n 这里的资源管理器并非Windows下的文件浏览器，而是负责对各种资源，比如字体、主题、图片、界面数据、字符串和其它数据的进行集中管理的组件。引入资源管理器的目的有以下几个：\n\n * 让上层不需要了解存储的方式。在没有文件系统时或者内存紧缺时，把资源转成常量数组直接编译到代码中。在有文件系统而且内存充足时，资源放在文件系统中。在有网络时，资源也可以存放在服务器上(暂未实现)。资源管理器为上层提供统一的接口，让上层而不用关心底层的存储方式。\n\n * 让上层不需要了解资源的具体格式。比如一个名为earth的图片，没有文件系统或内存紧缺，图片直接用位图数据格式存在ROM中，而有文件系统时，则用PNG格式存放在文件系统中。资源管理器让上层不需要关心图片的格式，访问时指定图片的名称即可(不用指定扩展名)。\n\n * 让上层不需要了解屏幕的密度。不同的屏幕密度下需要加载不同的图片，比如MacPro的Retina屏就需要用双倍解析度的图片，否则就出现界面模糊。AWTK以后会支持PC软件和手机软件的开发，所以资源管理器需要为此提供支持，让上层不需关心屏幕的密度。\n \n * 对资源进行内存缓存。不同类型的资源使用方式是不一样的，比如字体和主题加载之后会一直使用，UI文件在生成界面之后就暂时不需要了，PNG文件解码之后就只需要保留解码的位图数据即可。资源管理器配合图片管理器等其它组件实现资源的自动缓存。\n\n当从文件系统加载资源时，目录结构要求如下：\n\n ```\n assets/raw/\n  fonts   字体\n  images  图片\n    x1   普通密度屏幕的图片。\n    x2   2倍密度屏幕的图片。\n    x3   3倍密度屏幕的图片。\n  strings 需要翻译的字符串。 \n  styles  主题数据。\n  ui      UI描述数据。\n ```\n\n\n",
+    "desc": " 资源管理器。\n 这里的资源管理器并非Windows下的文件浏览器，而是负责对各种资源，比如字体、主题、图片、界面数据、字符串和其它数据的进行集中管理的组件。引入资源管理器的目的有以下几个：\n\n *\n让上层不需要了解存储的方式。在没有文件系统时或者内存紧缺时，把资源转成常量数组直接编译到代码中。在有文件系统而且内存充足时，资源放在文件系统中。在有网络时，资源也可以存放在服务器上(暂未实现)。资源管理器为上层提供统一的接口，让上层而不用关心底层的存储方式。\n\n *\n让上层不需要了解资源的具体格式。比如一个名为earth的图片，没有文件系统或内存紧缺，图片直接用位图数据格式存在ROM中，而有文件系统时，则用PNG格式存放在文件系统中。资源管理器让上层不需要关心图片的格式，访问时指定图片的名称即可(不用指定扩展名)。\n\n *\n让上层不需要了解屏幕的密度。不同的屏幕密度下需要加载不同的图片，比如MacPro的Retina屏就需要用双倍解析度的图片，否则就出现界面模糊。AWTK以后会支持PC软件和手机软件的开发，所以资源管理器需要为此提供支持，让上层不需关心屏幕的密度。\n\n *\n对资源进行内存缓存。不同类型的资源使用方式是不一样的，比如字体和主题加载之后会一直使用，UI文件在生成界面之后就暂时不需要了，PNG文件解码之后就只需要保留解码的位图数据即可。资源管理器配合图片管理器等其它组件实现资源的自动缓存。\n\n当从文件系统加载资源时，目录结构要求如下：\n\n ```\n assets/raw/\n  fonts   字体\n  images  图片\n    x1   普通密度屏幕的图片。\n    x2   2倍密度屏幕的图片。\n    x3   3倍密度屏幕的图片。\n  strings 需要翻译的字符串。\n  styles  主题数据。\n  ui      UI描述数据。\n ```\n\n\n",
     "name": "assets_manager_t",
     "annotation": {
       "scriptable": true
@@ -2326,6 +2326,57 @@
   },
   {
     "type": "class",
+    "methods": [],
+    "events": [],
+    "properties": [
+      {
+        "name": "on_idle",
+        "desc": " idle回调函数。\n\n",
+        "type": "idle_func_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "ctx",
+        "desc": " idle回调函数上下文。\n\n",
+        "type": "void*",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "id",
+        "desc": " idle的ID\n\n > 为TK\\_INVALID\\_ID时表示无效idle。\n\n",
+        "type": "uint32_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "on_destroy_ctx",
+        "desc": " idle销毁时的回调函数的上下文。\n\n",
+        "type": "tk_destroy_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "on_destroy",
+        "desc": " idle销毁时的回调函数。\n\n",
+        "type": "tk_destroy_t",
+        "annotation": {
+          "readable": true
+        }
+      }
+    ],
+    "header": "base/idle.h",
+    "desc": " 单个idle的信息。\n\n",
+    "name": "idle_info_t",
+    "level": 1
+  },
+  {
+    "type": "class",
     "methods": [
       {
         "params": [
@@ -2459,7 +2510,7 @@
     "events": [],
     "properties": [],
     "header": "base/idle.h",
-    "desc": " idle函数在主循环中paint之后执行。\n\n",
+    "desc": "\n idle可以看作是duration为0的定时器，不同的是idle函数在主循环中paint之后执行。\n\n > idle可以用来实现一些异步处理。\n\n 示例：\n\n ```c\n static ret_t something_on_idle(const idle_info_t* info) {\n   widget_t* widget = WIDGET(info->ctx);\n   edit_t* edit = EDIT(widget);\n   ...\n   return RET_REMOVE;\n }\n\n ...\n\n idle_add(something_on_idle, edit);\n\n ```\n\n > 在非GUI线程请用idle\\_queue。\n\n\n",
     "name": "idle_t",
     "annotation": {
       "scriptable": true,
@@ -2815,8 +2866,10 @@
             "desc": "输入法引擎对象。"
           }
         ],
-        "annotation": {},
-        "desc": " @deconstructor\n 销毁输入法引擎对象。\n\n\n",
+        "annotation": {
+          "deconstructor": true
+        },
+        "desc": " 销毁输入法引擎对象。\n\n\n",
         "name": "input_engine_destroy",
         "return": {
           "type": "ret_t",
@@ -2889,7 +2942,7 @@
       }
     ],
     "header": "base/input_engine.h",
-    "desc": " 输入法引擎接口。\n\n",
+    "desc": " 输入法引擎接口。\n\n 常见的实现方式有以下几种：\n\n * 空实现。用于不需要输入法的嵌入式平台。\n\n * 拼音输入法实现。用于需要输入法的嵌入式平台。\n\n ```graphviz\n [default_style]\n\n input_engine_pinyin_t -> input_engine_t[arrowhead=empty style=dashed]\n input_engine_null_t -> input_engine_t[arrowhead=empty style=dashed]\n\n ```\n\n",
     "name": "input_engine_t",
     "level": 1
   },
@@ -2944,7 +2997,285 @@
   },
   {
     "type": "class",
-    "methods": [],
+    "methods": [
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "event_t*",
+            "name": "e",
+            "desc": "事件。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 分发一个事件。\n\n\n",
+        "name": "input_method_dispatch",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "event_t*",
+            "name": "e",
+            "desc": "事件。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 分发一个事件当前焦点控件。\n\n\n",
+        "name": "input_method_dispatch_to_widget",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          },
+          {
+            "type": "event_type_t",
+            "name": "type",
+            "desc": "事件类型。"
+          },
+          {
+            "type": "event_func_t",
+            "name": "on_event",
+            "desc": "事件处理函数。"
+          },
+          {
+            "type": "void*",
+            "name": "ctx",
+            "desc": "事件处理函数上下文。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 注册指定事件的处理函数。\n\n\n",
+        "name": "input_method_on",
+        "return": {
+          "type": "uint32_t",
+          "desc": "返回id，用于input_method_off。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          },
+          {
+            "type": "uint32_t",
+            "name": "id",
+            "desc": "input_method_on返回的ID。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 注销指定事件的处理函数。\n\n\n",
+        "name": "input_method_off",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          },
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "焦点控件，为NULL时关闭输入法，非NULL时打开输入法。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 打开或关闭输入法。\n\n\n",
+        "name": "input_method_request",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          },
+          {
+            "type": "char*",
+            "name": "text",
+            "desc": "按钮的文本。"
+          },
+          {
+            "type": "bool_t",
+            "name": "enable",
+            "desc": "按钮的是否可用。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 设置软键盘上的action按钮的信息。\n\n\n",
+        "name": "input_method_update_action_button_info",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 软键盘上的action按钮被点击时，调用本函数分发EVT_IM_ACTION事件。\n\n\n",
+        "name": "input_method_dispatch_action",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          },
+          {
+            "type": "char*",
+            "name": "text",
+            "desc": "文本。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 提交输入文本。\n\n\n",
+        "name": "input_method_commit_text",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          },
+          {
+            "type": "uint32_t",
+            "name": "key",
+            "desc": "键值。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 提交按键。\n\n\n",
+        "name": "input_method_dispatch_key",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          },
+          {
+            "type": "char*",
+            "name": "strs",
+            "desc": "候选字列表。"
+          },
+          {
+            "type": "uint32_t",
+            "name": "nr",
+            "desc": "候选字个数。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 请求显示候选字。\n\n\n",
+        "name": "input_method_dispatch_candidates",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [],
+        "annotation": {},
+        "desc": " 创建输入法对象。在具体实现中实现。\n\n\n",
+        "name": "input_method_create",
+        "return": {
+          "type": "input_method_t*",
+          "desc": "成功返回输入法对象，失败返回NULL。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 销毁输入法对象。在具体实现中实现。\n\n\n",
+        "name": "input_method_destroy",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [],
+        "annotation": {},
+        "desc": " 获取全局输入法对象。\n\n\n",
+        "name": "input_method",
+        "return": {
+          "type": "input_method_t*",
+          "desc": "成功返回输入法对象，失败返回NULL。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "input_method_t*",
+            "name": "im",
+            "desc": "输入法对象。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 设置全局输入法对象。\n\n\n",
+        "name": "input_method_set",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      }
+    ],
     "events": [],
     "properties": [
       {
@@ -3013,7 +3344,7 @@
       }
     ],
     "header": "base/input_method.h",
-    "desc": " 输入法接口。\n\n",
+    "desc": " 输入法接口。\n\n 常见的实现方式有以下几种：\n\n * 空实现。用于不需要输入法的嵌入式平台。\n\n * 缺省实现。用于需要输入法的嵌入式平台。\n\n * 基于SDL实现的平台原生输入法。用于桌面系统和手机系统。\n\n ```graphviz\n  [default_style]\n\n  input_method_default_t -> input_method_t [arrowhead=empty style=dashed]\n  input_method_sdl_t -> input_method_t [arrowhead=empty style=dashed]\n  input_method_null_t -> input_method_t [arrowhead=empty style=dashed]\n\n ```\n\n > 输入类型请参考：[input\\_type](input_type_t.md)\n\n\n",
     "name": "input_method_t",
     "level": 1
   },
@@ -4985,6 +5316,89 @@
   },
   {
     "type": "class",
+    "methods": [],
+    "events": [],
+    "properties": [
+      {
+        "name": "on_timer",
+        "desc": " 定时器回调函数。\n\n",
+        "type": "timer_func_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "ctx",
+        "desc": " 定时器回调函数的上下文\n\n",
+        "type": "void*",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "id",
+        "desc": " 定时器的ID\n\n > 为TK\\_INVALID\\_ID时表示无效定时器。\n\n",
+        "type": "uint32_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "now",
+        "desc": " 当前时间(相对时间，单位为毫秒)。\n\n\n",
+        "type": "uint32_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "start",
+        "desc": " 起始时间(相对时间，单位为毫秒)。\n\n\n",
+        "type": "uint32_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "duration",
+        "desc": " 时间间隔(单位为毫秒)。\n\n\n",
+        "type": "uint32_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "on_destroy",
+        "desc": " 定时器销毁时的回调函数。\n\n",
+        "type": "tk_destroy_t",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "on_destroy_ctx",
+        "desc": " 定时器销毁时的回调函数上下文。\n\n",
+        "type": "void*",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "user_changed_time",
+        "desc": " 用户是否修改了系统时间。\n\n",
+        "type": "bool_t",
+        "annotation": {
+          "readable": true
+        }
+      }
+    ],
+    "header": "base/timer.h",
+    "desc": " 单个定时器的信息。\n\n",
+    "name": "timer_info_t",
+    "level": 1
+  },
+  {
+    "type": "class",
     "methods": [
       {
         "params": [
@@ -5019,7 +5433,7 @@
           },
           {
             "type": "uint32_t",
-            "name": "duration_ms",
+            "name": "duration",
             "desc": "时间。"
           }
         ],
@@ -5048,7 +5462,7 @@
           },
           {
             "type": "uint32_t",
-            "name": "duration_ms",
+            "name": "duration",
             "desc": "时间。"
           }
         ],
@@ -5171,7 +5585,7 @@
     "events": [],
     "properties": [],
     "header": "base/timer.h",
-    "desc": " 定时器系统。\n\n",
+    "desc": " 定时器系统。\n\n > 本定时器精度较低，最高精度为1000/FPS，如果需要高精度的定时器，请用OS提供的定时器。\n\n 示例：\n\n ```c\n static ret_t my_on_timer(const timer_info_t* info) {\n  widget_t* widget = WIDGET(info->ctx);\n  ...\n  return RET_REPEAT;\n }\n\n ...\n\n timer_add(my_on_timer, widget, 1000);\n ```\n > 在非GUI线程请用timer\\_queue。\n\n\n",
     "name": "timer_t",
     "annotation": {
       "scriptable": true,
@@ -5207,40 +5621,40 @@
   },
   {
     "type": "enum",
-    "desc": " 垂直对齐的常量定义。\r\n",
-    "consts": [
-      {
-        "desc": " 无效对齐方式。\r\n",
-        "name": "ALIGN_V_NONE"
-      },
-      {
-        "desc": " 居中对齐。\r\n",
-        "name": "ALIGN_V_MIDDLE"
-      },
-      {
-        "desc": " 顶部对齐。\r\n",
-        "name": "ALIGN_V_TOP"
-      },
-      {
-        "desc": " 底部对齐。\r\n",
-        "name": "ALIGN_V_BOTTOM"
-      }
-    ],
-    "header": "base/types_def.h",
-    "name": "align_v_t",
-    "prefix": "ALIGN_V_",
-    "annotation": {
-      "scriptable": true
-    },
-    "level": 1
-  },
-  {
-    "type": "enum",
     "desc": " 字体资源类型定义。\n\n",
     "consts": [],
     "header": "base/assets_manager.h",
     "name": "asset_font_type_t",
     "prefix": "ASSET_FONT_TYPE_",
+    "level": 1
+  },
+  {
+    "type": "enum",
+    "desc": " 水平对齐的常量定义。\r\n",
+    "consts": [
+      {
+        "desc": " 无效对齐方式。\r\n",
+        "name": "ALIGN_H_NONE"
+      },
+      {
+        "desc": " 居中对齐。\r\n",
+        "name": "ALIGN_H_CENTER"
+      },
+      {
+        "desc": " 左边对齐。\r\n",
+        "name": "ALIGN_H_LEFT"
+      },
+      {
+        "desc": " 右边对齐。\r\n",
+        "name": "ALIGN_H_RIGHT"
+      }
+    ],
+    "header": "base/types_def.h",
+    "name": "align_h_t",
+    "prefix": "ALIGN_H_",
+    "annotation": {
+      "scriptable": true
+    },
     "level": 1
   },
   {
@@ -5489,7 +5903,7 @@
     "events": [],
     "properties": [],
     "header": "base/ui_loader.h",
-    "desc": "\n UI加载器。\n\n 负责从资源加载界面描述数据，然后分发给ui\\_builder，由ui\\_builder进一步处理。\n\n 常见的实现有两种：\n\n * XML格式的加载器。\n\n * 二进制格式的加载器。 \n\n ```graphviz\n   [default_style]\n\n   ui_loader_defualt_t -> ui_loader_t[arrowhead = \"empty\"]\n   ui_loader_xml_t -> ui_loader_t[arrowhead = \"empty\"]\n\n ```\n\n\n",
+    "desc": "\n UI加载器。\n\n 负责从资源加载界面描述数据，然后分发给ui\\_builder，由ui\\_builder进一步处理。\n\n 常见的实现有两种：\n\n * XML格式的加载器。\n\n * 二进制格式的加载器。\n\n ```graphviz\n   [default_style]\n\n   ui_loader_defualt_t -> ui_loader_t[arrowhead = \"empty\"]\n   ui_loader_xml_t -> ui_loader_t[arrowhead = \"empty\"]\n\n ```\n\n\n",
     "name": "ui_loader_t",
     "level": 1
   },
@@ -5550,22 +5964,6 @@
             "type": "vgcanvas_t*",
             "name": "vg",
             "desc": "vgcanvas对象。"
-          }
-        ],
-        "annotation": {},
-        "desc": " begin path\n\n\n",
-        "name": "vgcanvas_begin_path",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "vgcanvas_t*",
-            "name": "vg",
-            "desc": "vgcanvas对象。"
           },
           {
             "type": "uint32_t",
@@ -5594,8 +5992,40 @@
           }
         ],
         "annotation": {},
-        "desc": " 重新初始化，系统内部调用。\n\n\n",
+        "desc": " 重新初始化，系统内部调用。\n\n\n\n",
         "name": "vgcanvas_reinit",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "vgcanvas_t*",
+            "name": "vg",
+            "desc": "vgcanvas对象。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 重置状态。\n\n\n\n",
+        "name": "vgcanvas_reset",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "vgcanvas_t*",
+            "name": "vg",
+            "desc": "vgcanvas对象。"
+          }
+        ],
+        "annotation": {},
+        "desc": " flush\n\n\n\n",
+        "name": "vgcanvas_flush",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -5615,8 +6045,24 @@
           }
         ],
         "annotation": {},
-        "desc": " 开始绘制，系统内部调用。\n\n\n",
+        "desc": " 开始绘制，系统内部调用。\n\n\n\n",
         "name": "vgcanvas_begin_frame",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "vgcanvas_t*",
+            "name": "vg",
+            "desc": "vgcanvas对象。"
+          }
+        ],
+        "annotation": {},
+        "desc": " 清除之前的路径，并重新开始一条路径。\n\n\n\n",
+        "name": "vgcanvas_begin_path",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -5641,7 +6087,7 @@
           }
         ],
         "annotation": {},
-        "desc": " move to\n\n\n",
+        "desc": " 移动当前点到指定点。\n\n\n\n",
         "name": "vgcanvas_move_to",
         "return": {
           "type": "ret_t",
@@ -5667,7 +6113,7 @@
           }
         ],
         "annotation": {},
-        "desc": " line to。\n\n\n",
+        "desc": " 生成一条线段(从当前点到目标点)。\n\n\n\n",
         "name": "vgcanvas_line_to",
         "return": {
           "type": "ret_t",
@@ -5703,7 +6149,7 @@
           }
         ],
         "annotation": {},
-        "desc": " quadratic curve to\n\n\n",
+        "desc": " 生成一条二次贝塞尔曲线。\n\n\n\n",
         "name": "vgcanvas_quad_to",
         "return": {
           "type": "ret_t",
@@ -5749,7 +6195,7 @@
           }
         ],
         "annotation": {},
-        "desc": " bezier curve to\n\n\n",
+        "desc": " 生成一条三次贝塞尔曲线。\n\n\n\n",
         "name": "vgcanvas_bezier_to",
         "return": {
           "type": "ret_t",
@@ -5790,7 +6236,7 @@
           }
         ],
         "annotation": {},
-        "desc": " arc to\n\n\n",
+        "desc": " 生成一条圆弧路径到指定点。\n\n\n\n",
         "name": "vgcanvas_arc_to",
         "return": {
           "type": "ret_t",
@@ -5836,7 +6282,7 @@
           }
         ],
         "annotation": {},
-        "desc": " arc\n\n\n",
+        "desc": " 生成一条圆弧。\n\n\n\n",
         "name": "vgcanvas_arc",
         "return": {
           "type": "ret_t",
@@ -5862,7 +6308,7 @@
           }
         ],
         "annotation": {},
-        "desc": " 检查点是否在当前路径中。\n\n\n",
+        "desc": " 检查点是否在当前路径中。\n\n\n\n",
         "name": "vgcanvas_is_point_in_path",
         "return": {
           "type": "bool_t",
@@ -5898,7 +6344,7 @@
           }
         ],
         "annotation": {},
-        "desc": " rect\n\n\n",
+        "desc": " 生成一个矩形路径。\n\n\n\n",
         "name": "vgcanvas_rect",
         "return": {
           "type": "ret_t",
@@ -5939,7 +6385,7 @@
           }
         ],
         "annotation": {},
-        "desc": " round rect\n\n\n",
+        "desc": " 生成一个圆角矩形路径。\n\n\n\n",
         "name": "vgcanvas_rounded_rect",
         "return": {
           "type": "ret_t",
@@ -5975,7 +6421,7 @@
           }
         ],
         "annotation": {},
-        "desc": " ellipse\n\n\n",
+        "desc": " 生成一个椭圆路径。\n\n\n\n",
         "name": "vgcanvas_ellipse",
         "return": {
           "type": "ret_t",
@@ -5991,40 +6437,8 @@
           }
         ],
         "annotation": {},
-        "desc": " close_path\n\n\n",
+        "desc": " 闭合路径。\n\n >闭合路径是指把起点和终点连接起来，形成一个封闭的多边形。\n\n\n\n",
         "name": "vgcanvas_close_path",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "vgcanvas_t*",
-            "name": "vg",
-            "desc": "vgcanvas对象。"
-          }
-        ],
-        "annotation": {},
-        "desc": " reset\n\n\n",
-        "name": "vgcanvas_reset",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "vgcanvas_t*",
-            "name": "vg",
-            "desc": "vgcanvas对象。"
-          }
-        ],
-        "annotation": {},
-        "desc": " flush\n\n\n",
-        "name": "vgcanvas_flush",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -6064,7 +6478,7 @@
           }
         ],
         "annotation": {},
-        "desc": " clear rect\n\n\n",
+        "desc": " 用颜色清除指定矩形区域。\n\n\n\n",
         "name": "vgcanvas_clear_rect",
         "return": {
           "type": "ret_t",
@@ -6085,7 +6499,7 @@
           }
         ],
         "annotation": {},
-        "desc": " rotate\n\n\n",
+        "desc": " 旋转。\n\n\n\n",
         "name": "vgcanvas_rotate",
         "return": {
           "type": "ret_t",
@@ -6111,7 +6525,7 @@
           }
         ],
         "annotation": {},
-        "desc": " scale\n\n\n",
+        "desc": " 缩放。\n\n\n\n",
         "name": "vgcanvas_scale",
         "return": {
           "type": "ret_t",
@@ -6137,7 +6551,7 @@
           }
         ],
         "annotation": {},
-        "desc": " scale\n\n\n",
+        "desc": " 平移。\n\n\n\n",
         "name": "vgcanvas_translate",
         "return": {
           "type": "ret_t",
@@ -6183,7 +6597,7 @@
           }
         ],
         "annotation": {},
-        "desc": " transform\n\n\n",
+        "desc": " 变换矩阵。\n\n\n\n",
         "name": "vgcanvas_transform",
         "return": {
           "type": "ret_t",
@@ -6229,7 +6643,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set transform\n\n\n",
+        "desc": " 设置变换矩阵。\n\n\n\n",
         "name": "vgcanvas_set_transform",
         "return": {
           "type": "ret_t",
@@ -6265,7 +6679,7 @@
           }
         ],
         "annotation": {},
-        "desc": " clip_rect\n\n\n",
+        "desc": " 矩形裁剪。\n\n\n\n",
         "name": "vgcanvas_clip_rect",
         "return": {
           "type": "ret_t",
@@ -6281,7 +6695,7 @@
           }
         ],
         "annotation": {},
-        "desc": " 填充多边形。\n\n\n",
+        "desc": " 填充多边形。\n\n\n\n",
         "name": "vgcanvas_fill",
         "return": {
           "type": "ret_t",
@@ -6297,7 +6711,7 @@
           }
         ],
         "annotation": {},
-        "desc": " 画线。\n\n\n",
+        "desc": " 画线。\n\n\n\n",
         "name": "vgcanvas_stroke",
         "return": {
           "type": "ret_t",
@@ -6323,7 +6737,7 @@
           }
         ],
         "annotation": {},
-        "desc": " 用图片填充/画多边形(可能存在可移植性问题，除非必要请勿使用)。\n 多边形的顶点必须在图片范围内，可以通过矩阵变化画到不同的位置。\n\n\n",
+        "desc": " 用图片填充/画多边形(可能存在可移植性问题，除非必要请勿使用)。\n 多边形的顶点必须在图片范围内，可以通过矩阵变化画到不同的位置。\n\n\n\n",
         "name": "vgcanvas_paint",
         "return": {
           "type": "ret_t",
@@ -6344,7 +6758,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set font\n\n\n",
+        "desc": " 设置字体的名称。\n\n\n\n",
         "name": "vgcanvas_set_font",
         "return": {
           "type": "ret_t",
@@ -6365,7 +6779,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set font size\n\n\n",
+        "desc": " 设置字体的大小。\n\n\n\n",
         "name": "vgcanvas_set_font_size",
         "return": {
           "type": "ret_t",
@@ -6386,7 +6800,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set text align\n\n\n",
+        "desc": " 设置文本水平对齐的方式。\n\n\n\n",
         "name": "vgcanvas_set_text_align",
         "return": {
           "type": "ret_t",
@@ -6407,7 +6821,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set text baseline\n\n\n",
+        "desc": " 设置文本垂直对齐的方式。\n\n\n\n",
         "name": "vgcanvas_set_text_baseline",
         "return": {
           "type": "ret_t",
@@ -6443,7 +6857,7 @@
           }
         ],
         "annotation": {},
-        "desc": " fill text\n\n\n",
+        "desc": " 绘制文本。\n\n\n\n",
         "name": "vgcanvas_fill_text",
         "return": {
           "type": "ret_t",
@@ -6464,7 +6878,7 @@
           }
         ],
         "annotation": {},
-        "desc": " measure text\n\n\n",
+        "desc": " 测量文本的宽度。\n\n\n\n",
         "name": "vgcanvas_measure_text",
         "return": {
           "type": "float_t",
@@ -6525,7 +6939,7 @@
           }
         ],
         "annotation": {},
-        "desc": " draw image\n\n\n",
+        "desc": " 绘制图片。\n\n\n\n",
         "name": "vgcanvas_draw_image",
         "return": {
           "type": "ret_t",
@@ -6586,7 +7000,7 @@
           }
         ],
         "annotation": {},
-        "desc": " draw icon\n\n\n",
+        "desc": " 绘制图标。\n\n 绘制图标时会根据屏幕密度进行自动缩放，而绘制普通图片时不会。\n\n\n\n",
         "name": "vgcanvas_draw_icon",
         "return": {
           "type": "ret_t",
@@ -6607,7 +7021,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set antialias\n\n\n",
+        "desc": " 设置是否启用反走样。\n\n\n\n",
         "name": "vgcanvas_set_antialias",
         "return": {
           "type": "ret_t",
@@ -6628,7 +7042,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set global alpha\n\n\n",
+        "desc": " 设置全局透明度。\n\n\n\n",
         "name": "vgcanvas_set_global_alpha",
         "return": {
           "type": "ret_t",
@@ -6649,7 +7063,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set line width\n\n\n",
+        "desc": " 设置线条的宽度。\n\n\n\n",
         "name": "vgcanvas_set_line_width",
         "return": {
           "type": "ret_t",
@@ -6670,7 +7084,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set fill color\n\n\n",
+        "desc": " 设置填充颜色。\n\n\n\n",
         "name": "vgcanvas_set_fill_color",
         "return": {
           "type": "ret_t",
@@ -6716,8 +7130,8 @@
           }
         ],
         "annotation": {},
-        "desc": " set fill linear gradient\n\n\n",
-        "name": "vgcanvas_set_linear_gradient",
+        "desc": " 设置填充颜色为线性渐变色。\n\n\n\n",
+        "name": "vgcanvas_set_fill_linear_gradient",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -6762,8 +7176,8 @@
           }
         ],
         "annotation": {},
-        "desc": " set fill radial gradient\n\n\n",
-        "name": "vgcanvas_set_radial_gradient",
+        "desc": " 设置填充颜色为径向渐变色。\n\n\n\n",
+        "name": "vgcanvas_set_fill_radial_gradient",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -6783,7 +7197,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set stroke color\n\n\n",
+        "desc": " 设置线条颜色。\n\n\n\n",
         "name": "vgcanvas_set_stroke_color",
         "return": {
           "type": "ret_t",
@@ -6829,8 +7243,8 @@
           }
         ],
         "annotation": {},
-        "desc": " set stroke linear gradient\n\n\n",
-        "name": "vgcanvas_set_linear_gradient",
+        "desc": " 设置线条颜色为线性渐变色。\n\n\n\n",
+        "name": "vgcanvas_set_stroke_linear_gradient",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -6875,8 +7289,8 @@
           }
         ],
         "annotation": {},
-        "desc": " set stroke radial gradient\n\n\n",
-        "name": "vgcanvas_set_radial_gradient",
+        "desc": " 设置线条颜色为径向渐变色。\n\n\n\n",
+        "name": "vgcanvas_set_stroke_radial_gradient",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -6896,7 +7310,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set line cap\n\n\n",
+        "desc": " 设置line cap。\n\n\n",
         "name": "vgcanvas_set_line_cap",
         "return": {
           "type": "ret_t",
@@ -6917,7 +7331,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set line join\n\n\n",
+        "desc": " 设置line join。\n\n\n",
         "name": "vgcanvas_set_line_join",
         "return": {
           "type": "ret_t",
@@ -6938,7 +7352,7 @@
           }
         ],
         "annotation": {},
-        "desc": " set miter limit\n\n\n",
+        "desc": " 设置miter limit。\n\n\n",
         "name": "vgcanvas_set_miter_limit",
         "return": {
           "type": "ret_t",
@@ -6954,7 +7368,7 @@
           }
         ],
         "annotation": {},
-        "desc": " save\n\n\n",
+        "desc": " 保存当前的状态。如颜色和矩阵等信息。\n\n save/restore必须配套使用，否则可能导致状态混乱。\n\n\n\n",
         "name": "vgcanvas_save",
         "return": {
           "type": "ret_t",
@@ -6970,7 +7384,7 @@
           }
         ],
         "annotation": {},
-        "desc": " restore\n\n\n",
+        "desc": " 恢复上次save的状态。\n\n save/restore必须配套使用，否则可能导致状态混乱。\n\n\n\n",
         "name": "vgcanvas_restore",
         "return": {
           "type": "ret_t",
@@ -7002,7 +7416,7 @@
           }
         ],
         "annotation": {},
-        "desc": " destroy\n\n\n",
+        "desc": " 销毁vgcanvas对象。\n\n\n",
         "name": "vgcanvas_destroy",
         "return": {
           "type": "ret_t",
@@ -7142,7 +7556,7 @@
       }
     ],
     "header": "base/vgcanvas.h",
-    "desc": " 矢量图画布抽象基类。\n\n 具体实现时可以使用agg，nanovg, cairo和skia等方式。\n\n cairo和skia体积太大，不适合嵌入式平台，但在PC平台也是一种选择。\n\n 目前我们只提供了基于nanovg的实现，支持软件渲染和硬件渲染。\n\n 我们对nanovg进行了一些改进:\n\n * 可以用agg/agge实现软件渲染(暂时不支持文本绘制)。\n\n * 可以用bgfx使用DirectX(Windows平台)和Metal(iOS)平台硬件加速。\n\n ```graphviz\n   [default_style]\n\n   vgcanvas_cairo_t -> vgcanvas_t[arrowhead = \"empty\"]\n   vgcanvas_nanovg_t -> vgcanvas_t[arrowhead = \"empty\"]\n   opengl -> vgcanvas_nanovg_t[arrowhead = \"none\"]\n   bgfx -> vgcanvas_nanovg_t[arrowhead = \"none\"]\n   agg -> vgcanvas_nanovg_t[arrowhead = \"none\"]\n   agge -> vgcanvas_nanovg_t[arrowhead = \"none\"]\n   vgcanvas_skia_t -> vgcanvas_t[arrowhead = \"empty\"]\n   vgcanvas_agge_t -> vgcanvas_t[arrowhead = \"empty\"]\n ```\n\n 示例：\n\n ```c\n   vgcanvas_t* vg = canvas_get_vgcanvas(c);\n   vgcanvas_save(vg);\n   vgcanvas_translate(vg, 0, 100);\n\n   vgcanvas_set_line_width(vg, 1);\n   vgcanvas_set_fill_color(vg, color_init(0xff, 0, 0, 0xff));\n   vgcanvas_rect(vg, 5, 5, 100, 100);\n   vgcanvas_fill(vg);\n   vgcanvas_restore(vg);\n ```\n\n",
+    "desc": " 矢量图画布抽象基类。\n\n 具体实现时可以使用agg，nanovg, cairo和skia等方式。\n\n cairo和skia体积太大，不适合嵌入式平台，但在PC平台也是一种选择。\n\n 目前我们只提供了基于nanovg的实现，支持软件渲染和硬件渲染。\n\n 我们对nanovg进行了一些改进:\n\n * 可以用agg/agge实现软件渲染(暂时不支持文本绘制)。\n\n * 可以用bgfx使用DirectX(Windows平台)和Metal(iOS)平台硬件加速。\n\n ```graphviz\n   [default_style]\n\n   vgcanvas_cairo_t -> vgcanvas_t[arrowhead = \"empty\"]\n   vgcanvas_nanovg_t -> vgcanvas_t[arrowhead = \"empty\"]\n   opengl -> vgcanvas_nanovg_t[arrowhead = \"none\"]\n   bgfx -> vgcanvas_nanovg_t[arrowhead = \"none\"]\n   agg -> vgcanvas_nanovg_t[arrowhead = \"none\"]\n   agge -> vgcanvas_nanovg_t[arrowhead = \"none\"]\n   vgcanvas_skia_t -> vgcanvas_t[arrowhead = \"empty\"]\n   vgcanvas_agge_t -> vgcanvas_t[arrowhead = \"empty\"]\n ```\n\n 示例：\n\n ```c\n   vgcanvas_t* vg = canvas_get_vgcanvas(c);\n   vgcanvas_save(vg);\n   vgcanvas_translate(vg, 0, 100);\n\n   vgcanvas_set_line_width(vg, 1);\n   vgcanvas_set_fill_color(vg, color_init(0xff, 0, 0, 0xff));\n   vgcanvas_rect(vg, 5, 5, 100, 100);\n   vgcanvas_fill(vg);\n   vgcanvas_restore(vg);\n ```\n\n >请参考：https://www.w3schools.com/tags/ref_canvas.asp\n\n\n",
     "name": "vgcanvas_t",
     "level": 1
   },
@@ -11362,7 +11776,7 @@
       }
     ],
     "header": "base/widget.h",
-    "desc": " **widget_t** 是所有控件、窗口和窗口管理器的基类。\n **widget_t**也是一个容器，可放其它**widget_t**到它的内部，形成一个树形结构。\n\n ```graphviz\n   [default_style]\n\n   widget_t -> widget_t[arrowhead = \"diamond\"]\n   window_t -> widget_t[arrowhead = \"empty\"]\n   window_manager_t -> widget_t[arrowhead = \"empty\"]\n   button_t -> widget_t[arrowhead = \"empty\"]\n   label_t -> widget_t[arrowhead = \"empty\"]\n   xxx_widget_t -> widget_t[arrowhead = \"empty\"]\n ```\n\n 通常**widget_t**通过一个矩形区域向用户呈现一些信息，接受用户的输入，并据此做出适当的反应。\n 它负责控件的生命周期、通用状态、事件分发和Style的管理。\n 本类提供的接口(函数和属性)除非特别说明，一般都适用于子类控件。\n\n > **widget_t**是抽象类，不要直接创建**widget_t**的实例。\n\n 为了便于解释，这里特别说明一下几个术语：\n\n * **父控件与子控件**：父控件与子控件指的两个控件的组合关系(这是在运行时决定的)。\n 比如：在窗口中放一个按钮，此时，我们称按钮是窗口的子控件，窗口是按钮的父控件。\n\n ```graphviz\n   [default_style]\n\n   子控件 -> 父控件[arrowhead = \"ediamond\"]\n ```\n\n * **子类控件与父类控件**：子类控件与父类控件指的两类控件的继承关系(这是在设计时决定的)。\n 比如：我们称**button_t**是**widget_t**的子类控件，**widget_t**是**button_t**的父类控件。\n\n ```graphviz\n   [default_style]\n\n   子类控件 -> 父类控件[arrowhead = \"empty\"]\n\n ```\n\n\n",
+    "desc": " **widget_t** 是所有控件、窗口和窗口管理器的基类。\n **widget_t**也是一个容器，可放其它**widget_t**到它的内部，形成一个树形结构。\n\n ```graphviz\n   [default_style]\n\n   widget_t -> widget_t[arrowhead = \"diamond\"]\n   window_t -> widget_t[arrowhead = \"empty\"]\n   window_manager_t -> widget_t[arrowhead = \"empty\"]\n   button_t -> widget_t[arrowhead = \"empty\"]\n   label_t -> widget_t[arrowhead = \"empty\"]\n   xxx_widget_t -> widget_t[arrowhead = \"empty\"]\n ```\n\n 通常**widget_t**通过一个矩形区域向用户呈现一些信息，接受用户的输入，并据此做出适当的反应。\n 它负责控件的生命周期、通用状态、事件分发和Style的管理。\n 本类提供的接口(函数和属性)除非特别说明，一般都适用于子类控件。\n\n 为了便于解释，这里特别说明一下几个术语：\n\n * **父控件与子控件**：父控件与子控件指的两个控件的组合关系(这是在运行时决定的)。\n 比如：在窗口中放一个按钮，此时，我们称按钮是窗口的子控件，窗口是按钮的父控件。\n\n ```graphviz\n   [default_style]\n\n   子控件 -> 父控件[arrowhead = \"ediamond\"]\n ```\n\n * **子类控件与父类控件**：子类控件与父类控件指的两类控件的继承关系(这是在设计时决定的)。\n 比如：我们称**button_t**是**widget_t**的子类控件，**widget_t**是**button_t**的父类控件。\n\n ```graphviz\n   [default_style]\n\n   子类控件 -> 父类控件[arrowhead = \"empty\"]\n\n ```\n\n widget相关的函数都只能在GUI线程中执行，如果需在非GUI线程中想调用widget相关函数，\n 请用idle\\_queue或timer\\_queue进行串行化。\n 请参考[demo thread](https://github.com/zlgopen/awtk/blob/master/demos/demo_thread_app.c)\n\n **widget\\_t**是抽象类，不要直接创建**widget\\_t**的实例。控件支持两种创建方式：\n\n * 通过XML创建。如：\n\n ```xml\n <button x=\"c\" y=\"m\" w=\"80\" h=\"30\" text=\"OK\"/>\n ```\n\n * 通过代码创建。如：\n\n ```c\n  widget_t* button = button_create(win, 10, 10, 128, 30);\n  widget_set_text(button, L\"OK\");\n  widget_on(button, EVT_CLICK, on_click, NULL);\n ```\n\n\n",
     "name": "widget_t",
     "annotation": {
       "scriptable": true
@@ -18641,318 +19055,26 @@
     "type": "class",
     "methods": [
       {
-        "params": [
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "image对象。"
-          },
-          {
-            "type": "char*",
-            "name": "name",
-            "desc": "图片名称，该图片必须存在于资源管理器。"
-          }
-        ],
+        "params": [],
         "annotation": {
-          "scriptable": true
+          "constructor": true
         },
-        "desc": " 设置控件的图片名称。\r\n\r\n",
-        "name": "image_set_image",
+        "desc": "\n 创建空输入法引擎对象。\n\n\n\n",
+        "name": "input_engine_create",
         "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "控件对象。"
-          },
-          {
-            "type": "float_t",
-            "name": "rotation",
-            "desc": "旋转角度(幅度)。"
-          }
-        ],
-        "annotation": {
-          "scriptable": true
-        },
-        "desc": " 设置控件的旋转角度(仅在WITH_VGCANVAS定义时生效)。\r\n\r\n",
-        "name": "image_set_rotation",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "控件对象。"
-          },
-          {
-            "type": "float_t",
-            "name": "scale_x",
-            "desc": "X方向缩放比例。"
-          },
-          {
-            "type": "float_t",
-            "name": "scale_y",
-            "desc": "Y方向缩放比例。"
-          }
-        ],
-        "annotation": {
-          "scriptable": true
-        },
-        "desc": " 设置控件的缩放比例(仅在WITH_VGCANVAS定义时生效)。\r\n\r\n",
-        "name": "image_set_scale",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "控件对象。"
-          },
-          {
-            "type": "float_t",
-            "name": "anchor_x",
-            "desc": "锚点X(0-1)。0在控件左边，0.5在控件中间，1在控件右边。"
-          },
-          {
-            "type": "float_t",
-            "name": "anchor_y",
-            "desc": "锚点Y(0-1)。0在控件顶部，0.5在控件中间，1在控件底部。"
-          }
-        ],
-        "annotation": {
-          "scriptable": true
-        },
-        "desc": " 设置控件的锚点(仅在WITH_VGCANVAS定义时生效)。\r\n\r\n",
-        "name": "image_set_anchor",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "控件对象。"
-          },
-          {
-            "type": "bool_t",
-            "name": "selected",
-            "desc": "是否被选中。"
-          }
-        ],
-        "annotation": {
-          "scriptable": true
-        },
-        "desc": " 设置控件的选中状态。\r\n\r\n",
-        "name": "image_set_selected",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "控件对象。"
-          },
-          {
-            "type": "bool_t",
-            "name": "selectable",
-            "desc": "是否可以被选中。"
-          }
-        ],
-        "annotation": {
-          "scriptable": true
-        },
-        "desc": " 设置控件是否可以被选中。\r\n\r\n",
-        "name": "image_set_selectable",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "控件对象。"
-          },
-          {
-            "type": "bool_t",
-            "name": "clickable",
-            "desc": "是否可以被点击。"
-          }
-        ],
-        "annotation": {
-          "scriptable": true
-        },
-        "desc": " 设置控件是否可以被点击。\r\n\r\n",
-        "name": "image_set_clickable",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "image_base对象。"
-          }
-        ],
-        "annotation": {
-          "cast": true,
-          "scriptable": true
-        },
-        "desc": " 转换为image_base对象(供脚本语言使用)。\r\n\r\n",
-        "name": "image_base_cast",
-        "return": {
-          "type": "widget_t*",
-          "desc": "image_base对象。"
+          "type": "input_engine_t*",
+          "desc": "返回输入法引擎对象。"
         }
       }
     ],
     "events": [],
-    "properties": [
-      {
-        "name": "image",
-        "desc": " 图片的名称。\r\n",
-        "type": "char*",
-        "annotation": {
-          "set_prop": true,
-          "get_prop": true,
-          "readable": true,
-          "persitent": true,
-          "design": true,
-          "scriptable": true
-        }
-      },
-      {
-        "name": "anchor_x",
-        "desc": " 锚点X(0-1)。0在控件左边，0.5在控件中间，1在控件右边。\r\n",
-        "type": "float_t",
-        "annotation": {
-          "set_prop": true,
-          "get_prop": true,
-          "readable": true,
-          "persitent": true,
-          "design": true,
-          "scriptable": true
-        }
-      },
-      {
-        "name": "anchor_y",
-        "desc": " 锚点Y(0-1)。0在控件顶部，0.5在控件中间，1在控件底部。\r\n",
-        "type": "float_t",
-        "annotation": {
-          "set_prop": true,
-          "get_prop": true,
-          "readable": true,
-          "persitent": true,
-          "design": true,
-          "scriptable": true
-        }
-      },
-      {
-        "name": "scale_x",
-        "desc": " 控件在X方向上的缩放比例。\r\n",
-        "type": "float_t",
-        "annotation": {
-          "set_prop": true,
-          "get_prop": true,
-          "readable": true,
-          "persitent": true,
-          "design": true,
-          "scriptable": true
-        }
-      },
-      {
-        "name": "scale_y",
-        "desc": " 控件在Y方向上的缩放比例。\r\n",
-        "type": "float_t",
-        "annotation": {
-          "set_prop": true,
-          "get_prop": true,
-          "readable": true,
-          "persitent": true,
-          "design": true,
-          "scriptable": true
-        }
-      },
-      {
-        "name": "rotation",
-        "desc": " 控件的旋转角度(幅度)。\r\n",
-        "type": "float_t",
-        "annotation": {
-          "set_prop": true,
-          "get_prop": true,
-          "readable": true,
-          "persitent": true,
-          "design": true,
-          "scriptable": true
-        }
-      },
-      {
-        "name": "clickable",
-        "desc": " 点击时，是否触发EVT_CLICK事件。\r\n",
-        "type": "bool_t",
-        "annotation": {
-          "set_prop": true,
-          "get_prop": true,
-          "readable": true,
-          "persitent": true,
-          "design": true,
-          "scriptable": true
-        }
-      },
-      {
-        "name": "selectable",
-        "desc": " 是否设置选中状态。\r\n",
-        "type": "bool_t",
-        "annotation": {
-          "set_prop": true,
-          "get_prop": true,
-          "readable": true,
-          "persitent": true,
-          "design": true,
-          "scriptable": true
-        }
-      },
-      {
-        "name": "selected",
-        "desc": " 当前是否被选中。\r\n",
-        "type": "bool_t",
-        "annotation": {
-          "readable": true,
-          "scriptable": true
-        }
-      }
-    ],
-    "header": "base/image_base.h",
-    "desc": " 图片控件基类。\r\n\r\n 本类把图片相关控件的公共行为进行抽象，放到一起方便重用。目前已知的具体实现如下图：\r\n\r\n ```graphviz\r\n   [default_style]\r\n\r\n   image_t -> image_base_t[arrowhead = \"empty\"]\r\n   svg_image_t -> image_base_t[arrowhead = \"empty\"]\r\n   gif_image_t -> image_base_t[arrowhead = \"empty\"]\r\n ```\r\n\r\n > 本类是一个抽象类，不能进行实例化。请在应用程序中使用具体的类，如image\\_t。\r\n\r\n",
-    "name": "image_base_t",
-    "parent": "widget_t",
+    "properties": [],
+    "header": "input_engines/input_engine_null.h",
+    "desc": "\n 空输入法引擎实现。\n\n 缺省输入法可以选择启用软键盘，但不启用具体的输入法引擎，此时可以选择空输入法引擎实现。\n\n\n\n",
+    "name": "input_engine_null_t",
+    "parent": "input_engine_t",
     "annotation": {
-      "scriptable": true
+      "fake": true
     },
     "level": 2
   },
@@ -18960,65 +19082,108 @@
     "type": "class",
     "methods": [
       {
-        "params": [
-          {
-            "type": "event_t*",
-            "name": "event",
-            "desc": "event对象。"
-          }
-        ],
+        "params": [],
         "annotation": {
-          "cast": true,
-          "scriptable": true
+          "constructor": true
         },
-        "desc": " 把event对象转window_event_t对象。主要给脚本语言使用。\n\n\n",
-        "name": "window_event_cast",
+        "desc": "\n 创建拼音输入法引擎对象。\n\n\n\n",
+        "name": "input_engine_create",
         "return": {
-          "type": "window_event_t*",
-          "desc": "对象。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "pointer_event_t*",
-            "name": "evt",
-            "desc": "指针事件对象。"
-          },
-          {
-            "type": "system_info_t*",
-            "name": "info",
-            "desc": "系统信息。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 根据屏幕旋转方向修正pointer_event中的坐标。\n\n\n",
-        "name": "pointer_event_rotate",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
+          "type": "input_engine_t*",
+          "desc": "返回输入法引擎对象。"
         }
       }
     ],
     "events": [],
-    "properties": [
+    "properties": [],
+    "header": "input_engines/input_engine_pinyin.h",
+    "desc": "\n 拼音输入法引擎实现。\n\n 基于谷歌拼音输入法实现。\n\n\n\n",
+    "name": "input_engine_pinyin_t",
+    "parent": "input_engine_t",
+    "annotation": {
+      "fake": true
+    },
+    "level": 2
+  },
+  {
+    "type": "class",
+    "methods": [
       {
-        "name": "window",
-        "desc": " canvas。\n\n",
-        "type": "widget_t*",
+        "params": [],
         "annotation": {
-          "readable": true,
-          "scriptable": true
+          "constructor": true
+        },
+        "desc": "\n 创建缺省输入法对象。\n\n\n\n",
+        "name": "input_method_default_create",
+        "return": {
+          "type": "input_method_t*",
+          "desc": "返回输入法对象。"
         }
       }
     ],
-    "header": "base/events.h",
-    "desc": " 窗口事件，由窗口管理器触发。\n\n",
-    "name": "window_event_t",
+    "events": [],
+    "properties": [],
+    "header": "input_methods/input_method_default.h",
+    "desc": "\n 缺省输入法实现。输入法会启用软键盘，但是开发者可以自定义输入法引擎。\n\n 目前可以选择不启用输入法引擎或启用拼音输入法引擎。\n\n 开发者也可以开发手写输入法或语音输入法，如果实现时遇到问题可以和我们交流。\n\n\n\n",
+    "name": "input_method_default_t",
+    "parent": "input_method_t",
     "annotation": {
-      "scriptable": true
+      "fake": true
     },
-    "parent": "event_t",
+    "level": 2
+  },
+  {
+    "type": "class",
+    "methods": [
+      {
+        "params": [],
+        "annotation": {
+          "constructor": true
+        },
+        "desc": "\n 创建空输入法对象。\n\n\n\n",
+        "name": "input_method_null_create",
+        "return": {
+          "type": "input_method_t*",
+          "desc": "返回输入法对象。"
+        }
+      }
+    ],
+    "events": [],
+    "properties": [],
+    "header": "input_methods/input_method_null.h",
+    "desc": "\n 空输入法实现。\n\n 在不需要输入法的嵌入式平台使用空的输入法。\n\n\n\n",
+    "name": "input_method_null_t",
+    "parent": "input_method_t",
+    "annotation": {
+      "fake": true
+    },
+    "level": 2
+  },
+  {
+    "type": "class",
+    "methods": [
+      {
+        "params": [],
+        "annotation": {
+          "constructor": true
+        },
+        "desc": "\n 创建SDL输入法对象。\n\n\n\n",
+        "name": "input_method_sdl_create",
+        "return": {
+          "type": "input_method_t*",
+          "desc": "返回输入法对象。"
+        }
+      }
+    ],
+    "events": [],
+    "properties": [],
+    "header": "input_methods/input_method_sdl.h",
+    "desc": "\n SDL输入法实现。\n\n SDL输入法使用平台自身的输入法引擎，一般在桌面Linux、MacOS、Windows、Android和iOS上使用。\n\n\n\n",
+    "name": "input_method_sdl_t",
+    "parent": "input_method_t",
+    "annotation": {
+      "fake": true
+    },
     "level": 2
   },
   {
@@ -19293,33 +19458,6 @@
     "type": "class",
     "methods": [
       {
-        "params": [],
-        "annotation": {
-          "constructor": true
-        },
-        "desc": "\n 创建只读的style对象。\n\n\n",
-        "name": "style_const_create",
-        "return": {
-          "type": "style_t*",
-          "desc": "返回style对象。"
-        }
-      }
-    ],
-    "events": [],
-    "properties": [],
-    "header": "base/style_const.h",
-    "desc": " \n 只读的style，从theme\\_t中获取数据。\n\n tools/theme_gen用于把XML的主题数据转换成常量数据。\n\n\n\n",
-    "name": "style_const_t",
-    "parent": "style_t",
-    "annotation": {
-      "fake": true
-    },
-    "level": 2
-  },
-  {
-    "type": "class",
-    "methods": [
-      {
         "params": [
           {
             "type": "event_t*",
@@ -19412,6 +19550,33 @@
       "scriptable": true
     },
     "parent": "event_t",
+    "level": 2
+  },
+  {
+    "type": "class",
+    "methods": [
+      {
+        "params": [],
+        "annotation": {
+          "constructor": true
+        },
+        "desc": "\n 创建只读的style对象。\n\n\n",
+        "name": "style_const_create",
+        "return": {
+          "type": "style_t*",
+          "desc": "返回style对象。"
+        }
+      }
+    ],
+    "events": [],
+    "properties": [],
+    "header": "base/style_const.h",
+    "desc": "\n 只读的style，从theme\\_t中获取数据。\n\n tools/theme_gen用于把XML的主题数据转换成常量数据。\n\n\n\n",
+    "name": "style_const_t",
+    "parent": "style_t",
+    "annotation": {
+      "fake": true
+    },
     "level": 2
   },
   {
@@ -19548,6 +19713,78 @@
     "events": [],
     "properties": [
       {
+        "name": "candidates",
+        "desc": " 可选的文本，多个文本以\\0分隔。如：里\\0李\\0力\\0离\\0\n\n",
+        "type": "char*",
+        "annotation": {
+          "readable": true
+        }
+      },
+      {
+        "name": "candidates_nr",
+        "desc": " 可选的文本的个数。\n\n",
+        "type": "uint32_t",
+        "annotation": {
+          "readable": true
+        }
+      }
+    ],
+    "header": "base/input_method.h",
+    "desc": " 输入法请求显示候选字的事件。\n\n",
+    "name": "im_candidates_event_t",
+    "parent": "event_t",
+    "level": 2
+  },
+  {
+    "type": "class",
+    "methods": [
+      {
+        "params": [
+          {
+            "type": "event_t*",
+            "name": "event",
+            "desc": "event对象。"
+          }
+        ],
+        "annotation": {
+          "cast": true,
+          "scriptable": true
+        },
+        "desc": " 把event对象转paint_event_t对象。主要给脚本语言使用。\n\n\n",
+        "name": "paint_event_cast",
+        "return": {
+          "type": "paint_event_t*",
+          "desc": "对象。"
+        }
+      }
+    ],
+    "events": [],
+    "properties": [
+      {
+        "name": "c",
+        "desc": " canvas。\n\n",
+        "type": "canvas_t*",
+        "annotation": {
+          "readable": true,
+          "scriptable": true
+        }
+      }
+    ],
+    "header": "base/events.h",
+    "desc": " 绘制事件。\n\n",
+    "name": "paint_event_t",
+    "annotation": {
+      "scriptable": true
+    },
+    "parent": "event_t",
+    "level": 2
+  },
+  {
+    "type": "class",
+    "methods": [],
+    "events": [],
+    "properties": [
+      {
         "name": "theme",
         "desc": " 主题资源的名称。\r\n 每个窗口都可以有独立的主题文件，如果没指定，则使用系统缺省的主题文件。\r\n 主题是一个XML文件，放在assets/raw/styles目录下。\r\n 请参考[主题](https://github.com/zlgopen/awtk/blob/master/docs/theme.md)\r\n",
         "type": "char*",
@@ -19574,7 +19811,7 @@
       },
       {
         "name": "closable",
-        "desc": " 收到EVT\\_REQUEST\\_CLOSE\\_WINDOW是否自动关闭窗口。\r\n\r\n 如果关闭窗口时，需要用户确认:\r\n\r\n * 1.将closable设置为WINDOW\\_CLOSABLE\\_CONFIRM\r\n\r\n * 2.处理窗口的EVT\\_REQUEST\\_CLOSE\\_WINDOW事件\r\n\r\n> closable在XML中取值为：yes/no/confirm，缺省为yes。\r\n",
+        "desc": " 收到EVT_REQUEST_CLOSE_WINDOW是否自动关闭窗口。\r\n\r\n 如果关闭窗口时，需要用户确认:\r\n\r\n * 1.将closable设置为WINDOW\\_CLOSABLE\\_CONFIRM\r\n\r\n * 2.处理窗口的EVT\\_REQUEST\\_CLOSE\\_WINDOW事件\r\n\r\n> closable在XML中取值为：yes/no/confirm，缺省为yes。\r\n",
         "type": "window_closable_t",
         "annotation": {
           "set_prop": true,
@@ -20516,275 +20753,38 @@
       {
         "params": [
           {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "控件对象。"
-          },
-          {
             "type": "event_t*",
-            "name": "e",
-            "desc": "事件。"
+            "name": "event",
+            "desc": "event对象。"
           }
         ],
-        "annotation": {},
-        "desc": " 分发一个事件。\n\n\n",
-        "name": "input_method_dispatch",
+        "annotation": {
+          "cast": true,
+          "scriptable": true
+        },
+        "desc": " 把event对象转window_event_t对象。主要给脚本语言使用。\n\n\n",
+        "name": "window_event_cast",
         "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
+          "type": "window_event_t*",
+          "desc": "对象。"
         }
       },
       {
         "params": [
           {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "控件对象。"
+            "type": "pointer_event_t*",
+            "name": "evt",
+            "desc": "指针事件对象。"
           },
           {
-            "type": "event_t*",
-            "name": "e",
-            "desc": "事件。"
+            "type": "system_info_t*",
+            "name": "info",
+            "desc": "系统信息。"
           }
         ],
         "annotation": {},
-        "desc": " 分发一个事件当前焦点控件。\n\n\n",
-        "name": "input_method_dispatch_to_widget",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          },
-          {
-            "type": "event_type_t",
-            "name": "type",
-            "desc": "事件类型。"
-          },
-          {
-            "type": "event_func_t",
-            "name": "on_event",
-            "desc": "事件处理函数。"
-          },
-          {
-            "type": "void*",
-            "name": "ctx",
-            "desc": "事件处理函数上下文。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 注册指定事件的处理函数。\n\n\n",
-        "name": "input_method_on",
-        "return": {
-          "type": "uint32_t",
-          "desc": "返回id，用于input_method_off。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          },
-          {
-            "type": "uint32_t",
-            "name": "id",
-            "desc": "input_method_on返回的ID。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 注销指定事件的处理函数。\n\n\n",
-        "name": "input_method_off",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          },
-          {
-            "type": "widget_t*",
-            "name": "widget",
-            "desc": "焦点控件，为NULL时关闭输入法，非NULL时打开输入法。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 打开或关闭输入法。\n\n\n",
-        "name": "input_method_request",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          },
-          {
-            "type": "char*",
-            "name": "text",
-            "desc": "按钮的文本。"
-          },
-          {
-            "type": "bool_t",
-            "name": "enable",
-            "desc": "按钮的是否可用。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 设置软键盘上的action按钮的信息。\n\n\n",
-        "name": "input_method_update_action_button_info",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 软键盘上的action按钮被点击时，调用本函数分发EVT_IM_ACTION事件。\n\n\n",
-        "name": "input_method_dispatch_action",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          },
-          {
-            "type": "char*",
-            "name": "text",
-            "desc": "文本。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 提交输入文本。\n\n\n",
-        "name": "input_method_commit_text",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          },
-          {
-            "type": "uint32_t",
-            "name": "key",
-            "desc": "键值。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 提交按键。\n\n\n",
-        "name": "input_method_dispatch_key",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          },
-          {
-            "type": "char*",
-            "name": "strs",
-            "desc": "候选字列表。"
-          },
-          {
-            "type": "uint32_t",
-            "name": "nr",
-            "desc": "候选字个数。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 请求显示候选字。\n\n\n",
-        "name": "input_method_dispatch_candidates",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [],
-        "annotation": {},
-        "desc": " 创建输入法对象。在具体实现中实现。\n\n\n",
-        "name": "input_method_create",
-        "return": {
-          "type": "input_method_t*",
-          "desc": "成功返回输入法对象，失败返回NULL。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 销毁输入法对象。在具体实现中实现。\n\n\n",
-        "name": "input_method_destroy",
-        "return": {
-          "type": "ret_t",
-          "desc": "返回RET_OK表示成功，否则表示失败。"
-        }
-      },
-      {
-        "params": [],
-        "annotation": {},
-        "desc": " 获取全局输入法对象。\n\n\n",
-        "name": "input_method",
-        "return": {
-          "type": "input_method_t*",
-          "desc": "成功返回输入法对象，失败返回NULL。"
-        }
-      },
-      {
-        "params": [
-          {
-            "type": "input_method_t*",
-            "name": "im",
-            "desc": "输入法对象。"
-          }
-        ],
-        "annotation": {},
-        "desc": " 设置全局输入法对象。\n\n\n",
-        "name": "input_method_set",
+        "desc": " 根据屏幕旋转方向修正pointer_event中的坐标。\n\n\n",
+        "name": "pointer_event_rotate",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -20794,25 +20794,21 @@
     "events": [],
     "properties": [
       {
-        "name": "candidates",
-        "desc": " 可选的文本，多个文本以\\0分隔。如：里\\0李\\0力\\0离\\0\n\n",
-        "type": "char*",
+        "name": "window",
+        "desc": " canvas。\n\n",
+        "type": "widget_t*",
         "annotation": {
-          "readable": true
-        }
-      },
-      {
-        "name": "candidates_nr",
-        "desc": " 可选的文本的个数。\n\n",
-        "type": "uint32_t",
-        "annotation": {
-          "readable": true
+          "readable": true,
+          "scriptable": true
         }
       }
     ],
-    "header": "base/input_method.h",
-    "desc": " 输入法请求显示候选字的事件。\n\n",
-    "name": "im_candidates_event_t",
+    "header": "base/events.h",
+    "desc": " 窗口事件，由窗口管理器触发。\n\n",
+    "name": "window_event_t",
+    "annotation": {
+      "scriptable": true
+    },
     "parent": "event_t",
     "level": 2
   },
@@ -20895,50 +20891,6 @@
       {
         "params": [
           {
-            "type": "event_t*",
-            "name": "event",
-            "desc": "event对象。"
-          }
-        ],
-        "annotation": {
-          "cast": true,
-          "scriptable": true
-        },
-        "desc": " 把event对象转paint_event_t对象。主要给脚本语言使用。\n\n\n",
-        "name": "paint_event_cast",
-        "return": {
-          "type": "paint_event_t*",
-          "desc": "对象。"
-        }
-      }
-    ],
-    "events": [],
-    "properties": [
-      {
-        "name": "c",
-        "desc": " canvas。\n\n",
-        "type": "canvas_t*",
-        "annotation": {
-          "readable": true,
-          "scriptable": true
-        }
-      }
-    ],
-    "header": "base/events.h",
-    "desc": " 绘制事件。\n\n",
-    "name": "paint_event_t",
-    "annotation": {
-      "scriptable": true
-    },
-    "parent": "event_t",
-    "level": 2
-  },
-  {
-    "type": "class",
-    "methods": [
-      {
-        "params": [
-          {
             "type": "widget_t*",
             "name": "parent",
             "desc": "父控件"
@@ -20968,8 +20920,8 @@
           "constructor": true,
           "scriptable": true
         },
-        "desc": " 创建guage对象\r\n\r\n",
-        "name": "guage_create",
+        "desc": " 创建guage_pointer对象\r\n\r\n",
+        "name": "guage_pointer_create",
         "return": {
           "type": "widget_t*",
           "desc": "对象。"
@@ -20980,20 +20932,108 @@
           {
             "type": "widget_t*",
             "name": "widget",
-            "desc": "guage对象。"
+            "desc": "guage_pointer对象。"
           }
         ],
         "annotation": {
           "cast": true,
           "scriptable": true
         },
-        "desc": " 转换为guage对象(供脚本语言使用)。\r\n\r\n",
-        "name": "guage_cast",
+        "desc": " 转换为guage_pointer对象(供脚本语言使用)。\r\n\r\n",
+        "name": "guage_pointer_cast",
         "return": {
           "type": "widget_t*",
-          "desc": "guage对象。"
+          "desc": "guage_pointer对象。"
         }
       },
+      {
+        "params": [
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "int32_t",
+            "name": "angle",
+            "desc": "指针角度。"
+          }
+        ],
+        "annotation": {
+          "scriptable": true
+        },
+        "desc": " 设置指针角度。12点钟方向为0度，顺时钟方向为正，单位为度。\r\n\r\n",
+        "name": "guage_pointer_set_angle",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "const char*",
+            "name": "image",
+            "desc": "指针的图片。"
+          }
+        ],
+        "annotation": {
+          "scriptable": true
+        },
+        "desc": " 设置指针的图片。\r\n\r\n",
+        "name": "guage_pointer_set_image",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      }
+    ],
+    "events": [],
+    "properties": [
+      {
+        "name": "angle",
+        "desc": " 指针角度。12点钟方向为0度，顺时钟方向为正，单位为度。\r\n",
+        "type": "int32_t",
+        "annotation": {
+          "set_prop": true,
+          "get_prop": true,
+          "readable": true,
+          "persitent": true,
+          "design": true,
+          "scriptable": true
+        }
+      },
+      {
+        "name": "image",
+        "desc": " 指针图片。图片须垂直向上，图片的中心点为旋转方向。\r\n",
+        "type": "char*",
+        "annotation": {
+          "set_prop": true,
+          "get_prop": true,
+          "readable": true,
+          "persitent": true,
+          "design": true,
+          "scriptable": true
+        }
+      }
+    ],
+    "header": "guage/guage_pointer.h",
+    "desc": " 仪表指针控件。\r\n",
+    "name": "guage_pointer_t",
+    "parent": "widget_t",
+    "annotation": {
+      "scriptable": true
+    },
+    "level": 2
+  },
+  {
+    "type": "class",
+    "methods": [
       {
         "params": [
           {
@@ -21010,8 +21050,8 @@
         "annotation": {
           "scriptable": true
         },
-        "desc": " 设置背景图片的名称。\r\n\r\n",
-        "name": "guage_set_image",
+        "desc": " 设置控件的图片名称。\r\n\r\n",
+        "name": "image_set_image",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -21022,22 +21062,166 @@
           {
             "type": "widget_t*",
             "name": "widget",
-            "desc": "image对象。"
+            "desc": "控件对象。"
           },
           {
-            "type": "image_draw_type_t",
-            "name": "draw_type",
-            "desc": "显示方式。"
+            "type": "float_t",
+            "name": "rotation",
+            "desc": "旋转角度(幅度)。"
           }
         ],
         "annotation": {
           "scriptable": true
         },
-        "desc": " 设置图片的显示方式。\r\n\r\n",
-        "name": "guage_set_draw_type",
+        "desc": " 设置控件的旋转角度(仅在WITH_VGCANVAS定义时生效)。\r\n\r\n",
+        "name": "image_set_rotation",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "float_t",
+            "name": "scale_x",
+            "desc": "X方向缩放比例。"
+          },
+          {
+            "type": "float_t",
+            "name": "scale_y",
+            "desc": "Y方向缩放比例。"
+          }
+        ],
+        "annotation": {
+          "scriptable": true
+        },
+        "desc": " 设置控件的缩放比例(仅在WITH_VGCANVAS定义时生效)。\r\n\r\n",
+        "name": "image_set_scale",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "float_t",
+            "name": "anchor_x",
+            "desc": "锚点X(0-1)。0在控件左边，0.5在控件中间，1在控件右边。"
+          },
+          {
+            "type": "float_t",
+            "name": "anchor_y",
+            "desc": "锚点Y(0-1)。0在控件顶部，0.5在控件中间，1在控件底部。"
+          }
+        ],
+        "annotation": {
+          "scriptable": true
+        },
+        "desc": " 设置控件的锚点(仅在WITH_VGCANVAS定义时生效)。\r\n\r\n",
+        "name": "image_set_anchor",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "bool_t",
+            "name": "selected",
+            "desc": "是否被选中。"
+          }
+        ],
+        "annotation": {
+          "scriptable": true
+        },
+        "desc": " 设置控件的选中状态。\r\n\r\n",
+        "name": "image_set_selected",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "bool_t",
+            "name": "selectable",
+            "desc": "是否可以被选中。"
+          }
+        ],
+        "annotation": {
+          "scriptable": true
+        },
+        "desc": " 设置控件是否可以被选中。\r\n\r\n",
+        "name": "image_set_selectable",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "控件对象。"
+          },
+          {
+            "type": "bool_t",
+            "name": "clickable",
+            "desc": "是否可以被点击。"
+          }
+        ],
+        "annotation": {
+          "scriptable": true
+        },
+        "desc": " 设置控件是否可以被点击。\r\n\r\n",
+        "name": "image_set_clickable",
+        "return": {
+          "type": "ret_t",
+          "desc": "返回RET_OK表示成功，否则表示失败。"
+        }
+      },
+      {
+        "params": [
+          {
+            "type": "widget_t*",
+            "name": "widget",
+            "desc": "image_base对象。"
+          }
+        ],
+        "annotation": {
+          "cast": true,
+          "scriptable": true
+        },
+        "desc": " 转换为image_base对象(供脚本语言使用)。\r\n\r\n",
+        "name": "image_base_cast",
+        "return": {
+          "type": "widget_t*",
+          "desc": "image_base对象。"
         }
       }
     ],
@@ -21045,7 +21229,7 @@
     "properties": [
       {
         "name": "image",
-        "desc": " 背景图片。\r\n",
+        "desc": " 图片的名称。\r\n",
         "type": "char*",
         "annotation": {
           "set_prop": true,
@@ -21057,9 +21241,9 @@
         }
       },
       {
-        "name": "draw_type",
-        "desc": " 图片的绘制方式。\r\n",
-        "type": "image_draw_type_t",
+        "name": "anchor_x",
+        "desc": " 锚点X(0-1)。0在控件左边，0.5在控件中间，1在控件右边。\r\n",
+        "type": "float_t",
         "annotation": {
           "set_prop": true,
           "get_prop": true,
@@ -21068,11 +21252,98 @@
           "design": true,
           "scriptable": true
         }
+      },
+      {
+        "name": "anchor_y",
+        "desc": " 锚点Y(0-1)。0在控件顶部，0.5在控件中间，1在控件底部。\r\n",
+        "type": "float_t",
+        "annotation": {
+          "set_prop": true,
+          "get_prop": true,
+          "readable": true,
+          "persitent": true,
+          "design": true,
+          "scriptable": true
+        }
+      },
+      {
+        "name": "scale_x",
+        "desc": " 控件在X方向上的缩放比例。\r\n",
+        "type": "float_t",
+        "annotation": {
+          "set_prop": true,
+          "get_prop": true,
+          "readable": true,
+          "persitent": true,
+          "design": true,
+          "scriptable": true
+        }
+      },
+      {
+        "name": "scale_y",
+        "desc": " 控件在Y方向上的缩放比例。\r\n",
+        "type": "float_t",
+        "annotation": {
+          "set_prop": true,
+          "get_prop": true,
+          "readable": true,
+          "persitent": true,
+          "design": true,
+          "scriptable": true
+        }
+      },
+      {
+        "name": "rotation",
+        "desc": " 控件的旋转角度(幅度)。\r\n",
+        "type": "float_t",
+        "annotation": {
+          "set_prop": true,
+          "get_prop": true,
+          "readable": true,
+          "persitent": true,
+          "design": true,
+          "scriptable": true
+        }
+      },
+      {
+        "name": "clickable",
+        "desc": " 点击时，是否触发EVT_CLICK事件。\r\n",
+        "type": "bool_t",
+        "annotation": {
+          "set_prop": true,
+          "get_prop": true,
+          "readable": true,
+          "persitent": true,
+          "design": true,
+          "scriptable": true
+        }
+      },
+      {
+        "name": "selectable",
+        "desc": " 是否设置选中状态。\r\n",
+        "type": "bool_t",
+        "annotation": {
+          "set_prop": true,
+          "get_prop": true,
+          "readable": true,
+          "persitent": true,
+          "design": true,
+          "scriptable": true
+        }
+      },
+      {
+        "name": "selected",
+        "desc": " 当前是否被选中。\r\n",
+        "type": "bool_t",
+        "annotation": {
+          "readable": true,
+          "scriptable": true
+        }
       }
     ],
-    "header": "guage/guage.h",
-    "desc": " 表盘控件。\r\n",
-    "name": "guage_t",
+    "header": "base/image_base.h",
+    "desc": " 图片控件基类。\r\n\r\n 本类把图片相关控件的公共行为进行抽象，放到一起方便重用。目前已知的具体实现如下图：\r\n\r\n ```graphviz\r\n   [default_style]\r\n\r\n   image_t -> image_base_t[arrowhead = \"empty\"]\r\n   svg_image_t -> image_base_t[arrowhead = \"empty\"]\r\n   gif_image_t -> image_base_t[arrowhead = \"empty\"]\r\n ```\r\n\r\n > 本类是一个抽象类，不能进行实例化。请在应用程序中使用具体的类，如image\\_t。\r\n\r\n",
+    "name": "image_base_t",
     "parent": "widget_t",
     "annotation": {
       "scriptable": true
@@ -21635,7 +21906,7 @@
     "events": [],
     "properties": [],
     "header": "ui_loader/ui_binary_writer.h",
-    "desc": " \n 生成二进制格式的UI描述数据。\n\n\n",
+    "desc": "\n 生成二进制格式的UI描述数据。\n\n\n",
     "name": "ui_binary_writer_t",
     "parent": "ui_builder_t",
     "level": 2
@@ -21665,7 +21936,7 @@
     "events": [],
     "properties": [],
     "header": "ui_loader/ui_builder_default.h",
-    "desc": " \n \n 构建widget树。\n\n\n",
+    "desc": "\n\n 构建widget树。\n\n\n",
     "name": "ui_builder_default_t",
     "parent": "ui_builder_t",
     "annotation": {
@@ -21692,7 +21963,7 @@
     "events": [],
     "properties": [],
     "header": "ui_loader/ui_loader_default.h",
-    "desc": " \n 二进制格式的UI资源加载器。\n\n\n\n",
+    "desc": "\n 二进制格式的UI资源加载器。\n\n\n\n",
     "name": "ui_loader_default_t",
     "parent": "ui_loader_t",
     "annotation": {
@@ -21719,7 +21990,7 @@
     "events": [],
     "properties": [],
     "header": "ui_loader/ui_loader_xml.h",
-    "desc": " \n XML格式的UI资源加载器。\n\n\n\n",
+    "desc": "\n XML格式的UI资源加载器。\n\n\n\n",
     "name": "ui_loader_xml_t",
     "parent": "ui_loader_t",
     "annotation": {
@@ -21757,7 +22028,7 @@
     "events": [],
     "properties": [],
     "header": "ui_loader/ui_xml_writer.h",
-    "desc": " \n 生成XML格式的UI描述数据。\n\n\n",
+    "desc": "\n 生成XML格式的UI描述数据。\n\n\n",
     "name": "ui_xml_writer_t",
     "parent": "ui_builder_t",
     "level": 2
@@ -24525,7 +24796,7 @@
       }
     ],
     "header": "widgets/edit.h",
-    "desc": " 单行编辑器控件。\r\n\r\n 在基于SDL的平台，单行编辑器控件使用平台原生的输入法，对于嵌入式平台使用内置的输入法。\r\n\r\n 在使用内置的输入法时，软键盘由输入类型决定，开发者可以自定义软键盘的界面。\r\n\r\n edit\\_t是[widget\\_t](widget_t.md)的子类控件，widget\\_t的函数均适用于edit\\_t控件。\r\n\r\n edit\\_t本身可以做为容器，放入按钮等控件。有三个类按钮比较特殊：\r\n\r\n * 名为\"inc\"的按钮。点击时增加编辑器的值，用于实现类似于spinbox的功能。\r\n * 名为\"dec\"的按钮。点击时减少编辑器的值，用于实现类似于spinbox的功能。\r\n * 名为\"clear\"的按钮。点击时清除编辑器中的内容。\r\n\r\n在xml中使用\"edit\"标签创建编辑器控件。如：\r\n\r\n ```xml\r\n <edit x=\"c\" y=\"m\" w=\"80\" h=\"30\"\r\n   tips=\"age\" input_type=\"uint\" min=\"0\" max=\"150\" step=\"1\" auto_fix=\"true\" style=\"number\" />\r\n ```\r\n\r\n > XXX：需要在min/max/step之前设置input\\_type。\r\n\r\n >\r\n更多用法请参考：[edit.xml](https://github.com/zlgopen/awtk/blob/master/demos/assets/raw/ui/edit.xml)\r\n\r\n 在c代码中使用函数edit\\_create创建编辑器控件。如：\r\n\r\n ```c\r\n  widget_t* edit = edit_create(win, 10, 10, 128, 30);\r\n  widget_set_text(edit, L\"OK\");\r\n ```\r\n\r\n > 创建之后，可以用widget\\_set\\_text或widget\\_set\\_text\\_utf8设置文本内容。\r\n\r\n > 完整示例请参考：[edit demo](https://github.com/zlgopen/awtk-c-demos/blob/master/demos/edit.c)\r\n\r\n 可用通过style来设置控件的显示风格，如字体的大小和颜色等等。如：\r\n\r\n ```xml\r\n <style name=\"default\" border_color=\"#a0a0a0\"  text_color=\"black\" text_align_h=\"left\">\r\n   <normal     bg_color=\"#f0f0f0\" />\r\n   <focused    bg_color=\"#f0f0f0\" border_color=\"black\"/>\r\n   <disable    bg_color=\"gray\" text_color=\"#d0d0d0\" />\r\n   <error      bg_color=\"#f0f0f0\" text_color=\"red\" />\r\n   <empty      bg_color=\"#f0f0f0\" text_color=\"#a0a0a0\" />\r\n </style>\r\n ```\r\n\r\n > 更多用法请参考：[theme\r\ndefault](https://github.com/zlgopen/awtk/blob/master/demos/assets/raw/styles/default.xml#L104)\r\n\r\n",
+    "desc": " 单行编辑器控件。\r\n\r\n 在基于SDL的平台，单行编辑器控件使用平台原生的输入法，对于嵌入式平台使用内置的输入法。\r\n\r\n 在使用内置的输入法时，软键盘由输入类型决定，开发者可以自定义软键盘的界面。\r\n\r\n edit\\_t是[widget\\_t](widget_t.md)的子类控件，widget\\_t的函数均适用于edit\\_t控件。\r\n\r\n edit\\_t本身可以做为容器，放入按钮等控件。有几个特殊的子控件：\r\n\r\n * 名为\"clear\"的按钮。点击时清除编辑器中的内容。\r\n * 名为\"inc\"的按钮。点击时增加编辑器的值，用于实现类似于spinbox的功能。\r\n * 名为\"dec\"的按钮。点击时减少编辑器的值，用于实现类似于spinbox的功能。\r\n * 名为\"visible\"的复选框。勾选时显示密码，反之不显示密码。\r\n\r\n在xml中使用\"edit\"标签创建编辑器控件。如：\r\n\r\n ```xml\r\n <edit x=\"c\" y=\"m\" w=\"80\" h=\"30\"\r\n   tips=\"age\" input_type=\"uint\" min=\"0\" max=\"150\" step=\"1\" auto_fix=\"true\" style=\"number\" />\r\n ```\r\n\r\n > XXX：需要在min/max/step之前设置input\\_type。\r\n\r\n >更多用法请参考：\r\n [edit.xml](https://github.com/zlgopen/awtk/blob/master/demos/assets/raw/ui/edit.xml)\r\n\r\n 在c代码中使用函数edit\\_create创建编辑器控件。如：\r\n\r\n ```c\r\n  widget_t* edit = edit_create(win, 10, 10, 128, 30);\r\n  widget_set_text(edit, L\"OK\");\r\n ```\r\n\r\n > 创建之后，可以用widget\\_set\\_text或widget\\_set\\_text\\_utf8设置文本内容。\r\n\r\n > 完整示例请参考：\r\n [edit demo](https://github.com/zlgopen/awtk-c-demos/blob/master/demos/edit.c)\r\n\r\n 可用通过style来设置控件的显示风格，如字体的大小和颜色等等。如：\r\n\r\n ```xml\r\n <style name=\"default\" border_color=\"#a0a0a0\"  text_color=\"black\" text_align_h=\"left\">\r\n   <normal     bg_color=\"#f0f0f0\" />\r\n   <focused    bg_color=\"#f0f0f0\" border_color=\"black\"/>\r\n   <disable    bg_color=\"gray\" text_color=\"#d0d0d0\" />\r\n   <error      bg_color=\"#f0f0f0\" text_color=\"red\" />\r\n   <empty      bg_color=\"#f0f0f0\" text_color=\"#a0a0a0\" />\r\n </style>\r\n ```\r\n\r\n > 更多用法请参考：\r\n [theme default](https://github.com/zlgopen/awtk/blob/master/demos/assets/raw/styles/default.xml#L104)\r\n\r\n",
     "name": "edit_t",
     "parent": "widget_t",
     "annotation": {
@@ -25984,8 +26255,8 @@
           "constructor": true,
           "scriptable": true
         },
-        "desc": " 创建guage_pointer对象\r\n\r\n",
-        "name": "guage_pointer_create",
+        "desc": " 创建guage对象\r\n\r\n",
+        "name": "guage_create",
         "return": {
           "type": "widget_t*",
           "desc": "对象。"
@@ -25996,18 +26267,18 @@
           {
             "type": "widget_t*",
             "name": "widget",
-            "desc": "guage_pointer对象。"
+            "desc": "guage对象。"
           }
         ],
         "annotation": {
           "cast": true,
           "scriptable": true
         },
-        "desc": " 转换为guage_pointer对象(供脚本语言使用)。\r\n\r\n",
-        "name": "guage_pointer_cast",
+        "desc": " 转换为guage对象(供脚本语言使用)。\r\n\r\n",
+        "name": "guage_cast",
         "return": {
           "type": "widget_t*",
-          "desc": "guage_pointer对象。"
+          "desc": "guage对象。"
         }
       },
       {
@@ -26015,19 +26286,19 @@
           {
             "type": "widget_t*",
             "name": "widget",
-            "desc": "控件对象。"
+            "desc": "image对象。"
           },
           {
-            "type": "int32_t",
-            "name": "angle",
-            "desc": "指针角度。"
+            "type": "char*",
+            "name": "name",
+            "desc": "图片名称，该图片必须存在于资源管理器。"
           }
         ],
         "annotation": {
           "scriptable": true
         },
-        "desc": " 设置指针角度。12点钟方向为0度，顺时钟方向为正，单位为度。\r\n\r\n",
-        "name": "guage_pointer_set_angle",
+        "desc": " 设置背景图片的名称。\r\n\r\n",
+        "name": "guage_set_image",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -26038,19 +26309,19 @@
           {
             "type": "widget_t*",
             "name": "widget",
-            "desc": "控件对象。"
+            "desc": "image对象。"
           },
           {
-            "type": "const char*",
-            "name": "image",
-            "desc": "指针的图片。"
+            "type": "image_draw_type_t",
+            "name": "draw_type",
+            "desc": "显示方式。"
           }
         ],
         "annotation": {
           "scriptable": true
         },
-        "desc": " 设置指针的图片。\r\n\r\n",
-        "name": "guage_pointer_set_image",
+        "desc": " 设置图片的显示方式。\r\n\r\n",
+        "name": "guage_set_draw_type",
         "return": {
           "type": "ret_t",
           "desc": "返回RET_OK表示成功，否则表示失败。"
@@ -26060,9 +26331,9 @@
     "events": [],
     "properties": [
       {
-        "name": "angle",
-        "desc": " 指针角度。12点钟方向为0度，顺时钟方向为正，单位为度。\r\n",
-        "type": "int32_t",
+        "name": "image",
+        "desc": " 背景图片。\r\n",
+        "type": "char*",
         "annotation": {
           "set_prop": true,
           "get_prop": true,
@@ -26073,9 +26344,9 @@
         }
       },
       {
-        "name": "image",
-        "desc": " 指针图片。图片须垂直向上，图片的中心点为旋转方向。\r\n",
-        "type": "char*",
+        "name": "draw_type",
+        "desc": " 图片的绘制方式。\r\n",
+        "type": "image_draw_type_t",
         "annotation": {
           "set_prop": true,
           "get_prop": true,
@@ -26086,9 +26357,9 @@
         }
       }
     ],
-    "header": "guage/guage_pointer.h",
-    "desc": " 仪表指针控件。\r\n",
-    "name": "guage_pointer_t",
+    "header": "guage/guage.h",
+    "desc": " 表盘控件。\r\n",
+    "name": "guage_t",
     "parent": "widget_t",
     "annotation": {
       "scriptable": true

@@ -10,11 +10,12 @@
 
  edit\_t是[widget\_t](widget_t.md)的子类控件，widget\_t的函数均适用于edit\_t控件。
 
- edit\_t本身可以做为容器，放入按钮等控件。有三个类按钮比较特殊：
+ edit\_t本身可以做为容器，放入按钮等控件。有几个特殊的子控件：
 
+ * 名为"clear"的按钮。点击时清除编辑器中的内容。
  * 名为"inc"的按钮。点击时增加编辑器的值，用于实现类似于spinbox的功能。
  * 名为"dec"的按钮。点击时减少编辑器的值，用于实现类似于spinbox的功能。
- * 名为"clear"的按钮。点击时清除编辑器中的内容。
+ * 名为"visible"的复选框。勾选时显示密码，反之不显示密码。
 
 在xml中使用"edit"标签创建编辑器控件。如：
 
@@ -25,8 +26,8 @@
 
  > XXX：需要在min/max/step之前设置input\_type。
 
- >
-更多用法请参考：[edit.xml](https://github.com/zlgopen/awtk/blob/master/demos/assets/raw/ui/edit.xml)
+ >更多用法请参考：
+ [edit.xml](https://github.com/zlgopen/awtk/blob/master/demos/assets/raw/ui/edit.xml)
 
  在c代码中使用函数edit\_create创建编辑器控件。如：
 
@@ -37,7 +38,8 @@
 
  > 创建之后，可以用widget\_set\_text或widget\_set\_text\_utf8设置文本内容。
 
- > 完整示例请参考：[edit demo](https://github.com/zlgopen/awtk-c-demos/blob/master/demos/edit.c)
+ > 完整示例请参考：
+ [edit demo](https://github.com/zlgopen/awtk-c-demos/blob/master/demos/edit.c)
 
  可用通过style来设置控件的显示风格，如字体的大小和颜色等等。如：
 
@@ -51,8 +53,8 @@
  </style>
  ```
 
- > 更多用法请参考：[theme
-default](https://github.com/zlgopen/awtk/blob/master/demos/assets/raw/styles/default.xml#L104)
+ > 更多用法请参考：
+ [theme default](https://github.com/zlgopen/awtk/blob/master/demos/assets/raw/styles/default.xml#L104)
 
 ### 函数
 <p id="edit_t_methods">
@@ -425,8 +427,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可脚本化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### bottom\_margin 属性
 -----------------------
 > <p id="edit_t_bottom_margin"> 下边距。
@@ -442,8 +444,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可脚本化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### input\_type 属性
 -----------------------
 > <p id="edit_t_input_type"> 输入类型。
@@ -459,8 +461,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可持久化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### left\_margin 属性
 -----------------------
 > <p id="edit_t_left_margin"> 左边距。
@@ -476,8 +478,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可脚本化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### max 属性
 -----------------------
 > <p id="edit_t_max"> 最大值或最大长度。
@@ -492,8 +494,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可持久化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### min 属性
 -----------------------
 > <p id="edit_t_min"> 最小值或最小长度。
@@ -508,8 +510,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可持久化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### password\_visible 属性
 -----------------------
 > <p id="edit_t_password_visible"> 密码是否可见。
@@ -525,8 +527,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可脚本化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### readonly 属性
 -----------------------
 > <p id="edit_t_readonly"> 编辑器是否为只读。
@@ -542,8 +544,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可脚本化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### right\_margin 属性
 -----------------------
 > <p id="edit_t_right_margin"> 右边距。
@@ -559,8 +561,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可脚本化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### step 属性
 -----------------------
 > <p id="edit_t_step"> 步长。
@@ -576,8 +578,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可持久化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### tips 属性
 -----------------------
 > <p id="edit_t_tips"> 输入提示。
@@ -593,8 +595,8 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可脚本化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
 #### top\_margin 属性
 -----------------------
 > <p id="edit_t_top_margin"> 上边距。
@@ -610,5 +612,5 @@ ret_t edit_set_text_limit (widget_t* widget, uint32_t min, uint32_t max);
 | 可脚本化   | 是 |
 | 可在IDE中设置 | 是 |
 | 可在XML中设置 | 是 |
-| 支通过widget\_get\_prop读取 | 是 |
-| 支通过widget\_set\_prop修改 | 是 |
+| 可通过widget\_get\_prop读取 | 是 |
+| 可通过widget\_set\_prop修改 | 是 |
