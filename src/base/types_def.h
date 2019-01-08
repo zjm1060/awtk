@@ -3,7 +3,7 @@
  * Author: AWTK Develop Team
  * Brief:  basic types definitions.
  *
- * Copyright (c) 2018 - 2018  Guangzhou ZHIYUAN Electronics Co.,Ltd.
+ * Copyright (c) 2018 - 2019  Guangzhou ZHIYUAN Electronics Co.,Ltd.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -240,5 +240,7 @@ typedef struct _widget_t widget_t;
     h = -h;                  \
     y = y - h + 1;           \
   }
+
+#define TK_LONG_PRESS_TIME 1000
 
 #endif /*TK_TYPES_DEF_H*/

@@ -1,10 +1,28 @@
 # 最新动态
+
+* 2019/01/08
+  * 完善text\_selector，增加mask color，实现伪3D效果。
+  * 修改font size的类型为font\_size\_t。
+  * 修改agge scan line为负的BUG(感谢陈谭提供补丁)。
+  * 按钮支持长按事件。
+
+* 2019/01/07
+  * 修改"Copyright (c) 2018 - 2018"为"Copyright (c) 2018 - 2019"
+  * 整理API文档：tab\_control/tab\_button/tab\_button\_group。
+
+* 2019/01/04
+  * slide\_menu动态决定可见子控件的个数(由长度与宽度比例和子控件个数决定)。
+  * 修改combobox的BUG。
+
 * 2019/01/03
   * 同步SDL代码。
   * 整理API文档：timer/idle
   * 用valgrind测试内存问题，并修改progress\_circle中的内存泄露问题。
   * 修改桌面版本窗口resize的问题。
   * 密码编辑器增加显示/不显示明文的开关。
+  * 键盘增加关闭按钮。
+  * 修改把控件状态改成字符串导致的BUG。
+  * 修改处理capslock的BUG。
 
 * 2019/01/02
   * 整理API文档：input\_method/input\_method\_default/input\_method\_sdl/input\_method\_null

@@ -3,7 +3,7 @@
  * Author: AWTK Develop Team
  * Brief:  keyboard
  *
- * Copyright (c) 2018 - 2018  Guangzhou ZHIYUAN Electronics Co.,Ltd.
+ * Copyright (c) 2018 - 2019  Guangzhou ZHIYUAN Electronics Co.,Ltd.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -103,6 +103,12 @@ static ret_t keyboard_on_button_click(void* ctx, event_t* e) {
   const char* name = button->name;
   const char* key = strstr(name, STR_KEY_PREFIX);
   const char* page_name = strstr(name, STR_PAGE_PREFIX);
+
+  if (tk_str_eq(name, "close")) {
+    input_method_request(im, NULL);
+
+    return RET_OK;
+  }
 
   if (page_name != NULL) {
     return keyboard_set_active_page(button, page_name + strlen(STR_PAGE_PREFIX));

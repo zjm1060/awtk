@@ -3,7 +3,7 @@
  * Author: AWTK Develop Team
  * Brief:  basic class of all widget
  *
- * Copyright (c) 2018 - 2018  Guangzhou ZHIYUAN Electronics Co.,Ltd.
+ * Copyright (c) 2018 - 2019  Guangzhou ZHIYUAN Electronics Co.,Ltd.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -324,19 +324,19 @@ const char* widget_get_state_for_style(widget_t* widget, bool_t active, bool_t c
   }
 
   if (active) {
-    if (state == WIDGET_STATE_NORMAL) {
+    if (tk_str_eq(state, WIDGET_STATE_NORMAL)) {
       state = WIDGET_STATE_NORMAL_OF_ACTIVE;
-    } else if (state == WIDGET_STATE_PRESSED) {
+    } else if (tk_str_eq(state, WIDGET_STATE_PRESSED)) {
       state = WIDGET_STATE_PRESSED_OF_ACTIVE;
-    } else if (state == WIDGET_STATE_OVER) {
+    } else if (tk_str_eq(state, WIDGET_STATE_OVER)) {
       state = WIDGET_STATE_OVER_OF_ACTIVE;
     }
   } else if (checked) {
-    if (state == WIDGET_STATE_NORMAL) {
+    if (tk_str_eq(state, WIDGET_STATE_NORMAL)) {
       state = WIDGET_STATE_NORMAL_OF_CHECKED;
-    } else if (state == WIDGET_STATE_PRESSED) {
+    } else if (tk_str_eq(state, WIDGET_STATE_PRESSED)) {
       state = WIDGET_STATE_PRESSED_OF_CHECKED;
-    } else if (state == WIDGET_STATE_OVER) {
+    } else if (tk_str_eq(state, WIDGET_STATE_OVER)) {
       state = WIDGET_STATE_OVER_OF_CHECKED;
     }
   }

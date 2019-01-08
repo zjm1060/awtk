@@ -3,7 +3,7 @@
  * Author: AWTK Develop Team
  * Brief:  keyboard
  *
- * Copyright (c) 2018 - 2018  Guangzhou ZHIYUAN Electronics Co.,Ltd.
+ * Copyright (c) 2018 - 2019  Guangzhou ZHIYUAN Electronics Co.,Ltd.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,6 +30,7 @@ BEGIN_C_DECLS
  * @class keyboard_t
  * @parent widget_t
  * 键盘。
+ *
  */
 typedef struct _keyboard_t {
   window_base_t window;
