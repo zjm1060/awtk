@@ -72,7 +72,7 @@ static ret_t font_stb_get_glyph(font_t* f, wchar_t c, font_size_t font_size, gly
     return RET_OK;
   }
 
-  g->bitmap.data = stbtt_GetCodepointBitmap(sf, 0, scale, c, &w, &h, &x, &y);
+  g->data = stbtt_GetCodepointBitmap(sf, 0, scale, c, &w, &h, &x, &y);
   stbtt_GetCodepointHMetrics(sf, c, &advance, &lsb);
 
   g->x = x;
@@ -92,7 +92,7 @@ static ret_t font_stb_get_glyph(font_t* f, wchar_t c, font_size_t font_size, gly
     }
   }
 
-  return g->bitmap.data != NULL ? RET_OK : RET_NOT_FOUND;
+  return g->data != NULL ? RET_OK : RET_NOT_FOUND;
 }
 
 static ret_t font_stb_destroy(font_t* f) {

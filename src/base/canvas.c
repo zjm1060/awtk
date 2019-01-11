@@ -243,13 +243,8 @@ static float_t canvas_measure_text_default(canvas_t* c, const wchar_t* str, uint
     wchar_t chr = str[i];
     if (chr == ' ') {
       w += 4;
-<<<<<<< HEAD
-    } else if (font_find_glyph(c->font, chr, &g, c->font_size) == RET_OK) {
-      w += g.metrics.advanceX + 1;
-=======
     } else if (font_get_glyph(c->font, chr, c->font_size, &g) == RET_OK) {
       w += g.advance + 1;
->>>>>>> ef4eb73ec472dc1bcfb37c92677049769def4828
     }
   }
 
@@ -468,8 +463,8 @@ ret_t canvas_stroke_rect(canvas_t* c, xy_t x, xy_t y, wh_t w, wh_t h) {
 static ret_t canvas_draw_glyph(canvas_t* c, glyph_t* g, xy_t x, xy_t y) {
   rect_t src;
   rect_t dst;
-  xy_t x2 = x + g->metrics.w - 1;
-  xy_t y2 = y + g->metrics.h - 1;
+  xy_t x2 = x + g->w - 1;
+  xy_t y2 = y + g->h - 1;
 
   if (x > c->clip_right || x2 < c->clip_left || y > c->clip_bottom || y2 < c->clip_top) {
     return RET_OK;
@@ -493,8 +488,8 @@ static ret_t canvas_draw_char_impl(canvas_t* c, wchar_t chr, xy_t x, xy_t y) {
   font_size_t font_size = c->font_size;
   return_value_if_fail(font_get_glyph(c->font, chr, font_size, &g) == RET_OK, RET_BAD_PARAMS);
 
-  x += g.metrics.x;
-  y += font_size + g.metrics.y;
+  x += g.x;
+  y += font_size + g.y;
 
   return canvas_draw_glyph(c, &g, x, y);
 }
@@ -525,18 +520,12 @@ static ret_t canvas_draw_text_impl(canvas_t* c, const wchar_t* str, uint32_t nr,
     } else if (chr == '\r') {
       y += font_size;
       x = left;
-<<<<<<< HEAD
-    } else if (font_find_glyph(c->font, chr, &g, c->font_size) == RET_OK) {
-      xy_t xx = x + g.metrics.x;
-      xy_t yy = y + font_size + g.metrics.y;
-=======
     } else if (font_get_glyph(c->font, chr, c->font_size, &g) == RET_OK) {
       xy_t xx = x + g.x;
       xy_t yy = y + font_size + g.y;
->>>>>>> ef4eb73ec472dc1bcfb37c92677049769def4828
 
       canvas_draw_glyph(c, &g, xx, yy);
-      x += g.metrics.advanceX + 1;
+      x += g.advance + 1;
     } else {
       x += 4;
     }
