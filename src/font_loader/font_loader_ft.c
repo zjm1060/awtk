@@ -66,7 +66,7 @@ static ret_t font_ft_get_glyph(font_t* f, wchar_t c, font_size_t font_size, glyp
   FT_Glyph glyph;
   FT_GlyphSlot glyf;
 
-  g->bitmap.data = NULL;
+  g->data = NULL;
   if (glyph_cache_lookup(&(font->cache), c, font_size, g) == RET_OK) {
     return RET_OK;
   }
@@ -97,7 +97,7 @@ static ret_t font_ft_get_glyph(font_t* f, wchar_t c, font_size_t font_size, glyp
     }
   }
 
-  return g->bitmap.data != NULL ? RET_OK : RET_NOT_FOUND;
+  return g->data != NULL ? RET_OK : RET_NOT_FOUND;
 }
 
 static int32_t font_ft_get_baseline(font_t* f, font_size_t font_size) {
