@@ -1,4 +1,24 @@
 # 最新动态
+* 2019/01/14
+  * 完善脚本绑定(增加函数和注释)。
+  * 整理API文档：color\_picker/gif\_image/guage/guage\_pointer。
+
+* 2019/01/13
+  * 完善脚本绑定(增加函数和注释)。
+  * 更新awtk-js。
+  * 更新awtk-lua。
+
+* 2019/01/12
+  * 重新实现timer，解决timer中打开模态窗口的问题。 
+  * 重新实现idle，解决idle中打开模态窗口的问题。 
+  * 完善object，在修改属性和销毁时触发事件。
+
+* 2019/01/11
+  * 增加slist\_t。
+
+* 2019/01/10
+  * 增加object\_t/object\_default\_t/named\_value\_t等几个类。
+  * value\_t支持object。
 
 * 2019/01/09
   * 完善slide menu，增加mask color，实现两边的按钮淡出的效果。

@@ -36,7 +36,7 @@ static void object_default_check(object_default_t* o) {
     }
   }
 #else
-(void)o;	
+  (void)o;
 #endif
 }
 
@@ -256,7 +256,8 @@ static const object_vtable_t s_object_default_vtable = {
     .remove_prop = object_default_remove_prop,
     .foreach_prop = object_default_foreach_prop};
 
-object_t* object_default_create(uint32_t init_capacity) {
+object_t* object_default_create(void) {
+  uint32_t init_capacity = 5;
   object_t* obj = object_create(&s_object_default_vtable);
 
   if (init_capacity > 0) {

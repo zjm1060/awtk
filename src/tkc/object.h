@@ -55,6 +55,7 @@ struct _object_vtable_t {
  * @class object_t
  * @parent emitter_t
  * @annotation ["scriptable"]
+ * @alias object_base
  *
  * 对象接口。
  *
@@ -83,7 +84,6 @@ struct _object_t {
 
 /**
  * @method object_unref
- *
  * 引用计数减1。引用计数为0时，销毁对象。
  *
  * @annotation ["deconstructor", "scriptable"]
@@ -95,19 +95,17 @@ ret_t object_unref(object_t* obj);
 
 /**
  * @method object_ref
- *
  * 引用计数加1。
  *
  * @annotation ["constructor", "scriptable"]
  * @param {object_t*} obj object对象。
  *
- * @return {ret_t} 返回object对象。
+ * @return {object_t*} 返回object对象。
  */
 object_t* object_ref(object_t* obj);
 
 /**
  * @method object_create
- *
  * 创建对象。
  *
  * > 仅供子类调用。

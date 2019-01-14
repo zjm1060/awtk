@@ -59,25 +59,25 @@ typedef struct _pointf_t {
 typedef struct _rect_t {
   /**
    * @property {xy_t} x
-   * @annotation ["readable"]
+   * @annotation ["readable", "scriptable"]
    * x坐标。
    */
   xy_t x;
   /**
    * @property {xy_t} y
-   * @annotation ["readable"]
+   * @annotation ["readable", "scriptable"]
    * y坐标。
    */
   xy_t y;
   /**
    * @property {wh_t} w
-   * @annotation ["readable"]
+   * @annotation ["readable", "scriptable"]
    * 宽度。
    */
   wh_t w;
   /**
    * @property {wh_t} h
-   * @annotation ["readable"]
+   * @annotation ["readable", "scriptable"]
    * 高度。
    */
   wh_t h;
@@ -98,6 +98,35 @@ typedef struct _rect_t {
  * @return {rect_t*} rect对象。
  */
 rect_t* rect_create(xy_t x, xy_t y, wh_t w, wh_t h);
+
+/**
+ * @method rect_set
+ * 设置rect对象的xywh。
+ *
+ * > 主要供脚本语言使用。
+ *
+ * @annotation ["scriptable"]
+ * @param {rect_t*} rect rect对象。
+ * @param {xy_t} x x坐标。
+ * @param {xy_t} y y坐标。
+ * @param {wh_t} w 宽度。
+ * @param {wh_t} h 高度。
+ *
+ * @return {rect_t*} rect对象。
+ */
+rect_t* rect_set(rect_t* rect, xy_t x, xy_t y, wh_t w, wh_t h);
+
+/**
+ * @method rect_cast
+ * 转换为rect对象。
+ *
+ * > 供脚本语言使用。
+ * @annotation ["cast", "scriptable"]
+ * @param {rect_t*} rect rect对象。
+ *
+ * @return {rect_t*} rect对象。
+ */
+rect_t* rect_cast(rect_t* rect);
 
 /**
  * @method rect_destroy

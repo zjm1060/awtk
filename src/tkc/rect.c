@@ -145,6 +145,20 @@ rect_t* rect_create(xy_t x, xy_t y, wh_t w, wh_t h) {
   return r;
 }
 
+rect_t* rect_set(rect_t* r, xy_t x, xy_t y, wh_t w, wh_t h) {
+  return_value_if_fail(r != NULL, NULL);
+
+  *r = rect_init(x, y, w, h);
+
+  return r;
+}
+
+rect_t* rect_cast(rect_t* rect) {
+  return_value_if_fail(rect != NULL, NULL);
+
+  return rect;
+}
+
 ret_t rect_destroy(rect_t* r) {
   return_value_if_fail(r != NULL, RET_BAD_PARAMS);
 

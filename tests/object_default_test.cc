@@ -7,9 +7,23 @@
 #ifdef WIN32
 #define random rand
 #define srandom srand
-#endif/*WIN32*/
+#endif /*WIN32*/
 
 using std::string;
+
+static ret_t event_dump(void* ctx, event_t* e) {
+  string& str = *(string*)ctx;
+
+  if (e->type == EVT_PROP_WILL_CHANGE || e->type == EVT_PROP_CHANGED) {
+    prop_change_event_t* evt = (prop_change_event_t*)e;
+    str += evt->name;
+    str += ":";
+  } else if (e->type == EVT_DESTROY) {
+    str += "destroy:";
+  }
+
+  return RET_OK;
+}
 
 static ret_t visit_dump(void* ctx, const void* data) {
   string& str = *(string*)ctx;
@@ -20,10 +34,28 @@ static ret_t visit_dump(void* ctx, const void* data) {
   return RET_OK;
 }
 
+TEST(ObejectDefault, events) {
+  value_t v;
+  string log;
+  object_t* obj = object_default_create();
+  object_default_t* o = OBJECT_DEFAULT(obj);
+
+  emitter_on((emitter_t*)o, EVT_PROP_WILL_CHANGE, event_dump, &log);
+  emitter_on((emitter_t*)o, EVT_PROP_CHANGED, event_dump, &log);
+  emitter_on((emitter_t*)o, EVT_DESTROY, event_dump, &log);
+
+  ASSERT_EQ(object_set_prop(obj, "6", value_set_int(&v, 50)), RET_OK);
+  ASSERT_EQ(object_set_prop(obj, "8", value_set_int(&v, 50)), RET_OK);
+
+  object_unref(obj);
+
+  ASSERT_EQ(log, "6:6:8:8:destroy:");
+}
+
 TEST(ObejectDefault, basic) {
   value_t v;
   string log;
-  object_t* obj = object_default_create(0);
+  object_t* obj = object_default_create();
   object_default_t* o = OBJECT_DEFAULT(obj);
 
   ASSERT_EQ(o->props_size, 0);
@@ -165,7 +197,7 @@ static ret_t visit_test_busy(void* ctx, const void* data) {
 TEST(ObejectDefault, visis_remove) {
   value_t v;
   string log;
-  object_t* obj = object_default_create(0);
+  object_t* obj = object_default_create();
   object_default_t* o = OBJECT_DEFAULT(obj);
 
   ASSERT_EQ(object_set_prop(obj, "2", value_set_int(&v, 2)), RET_OK);
@@ -199,15 +231,6 @@ TEST(ObejectDefault, visis_remove) {
   object_unref(obj);
 }
 
-static void assert_le(int32_t a, int32_t b) {
-  char s1[32];
-  char s2[32];
-  tk_snprintf(s1, sizeof(s1), "%d", a);
-  tk_snprintf(s2, sizeof(s2), "%d", b);
-
-  ASSERT_LE(string(s1), string(s2));
-}
-
 TEST(ObejectDefault, random) {
   value_t v;
   string log;
@@ -215,9 +238,9 @@ TEST(ObejectDefault, random) {
   int32_t i = 0;
   int32_t n = 10000;
 
-  object_t* obj = object_default_create(0);
+  object_t* obj = object_default_create();
 
-	srandom(time(0));                                 
+  srandom(time(0));
 
   for (i = 0; i < n; i++) {
     int32_t num = tk_abs((int32_t)random());
@@ -231,7 +254,7 @@ TEST(ObejectDefault, random) {
 }
 
 TEST(ObejectDefault, set_name) {
-  object_t* obj = object_default_create(0);
+  object_t* obj = object_default_create();
 
   object_set_name(obj, "abc");
   ASSERT_EQ(obj->name, string("abc"));

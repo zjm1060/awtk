@@ -73,7 +73,7 @@ typedef union _color_t {
   rgba_t rgba;
   /**
    * @property {uint32_t} color
-   * @annotation ["readable", "writable"]
+   * @annotation ["readable", "writable", "scriptable"]
    * 颜色的数值。
    */
   uint32_t color;
@@ -109,17 +109,18 @@ color_t color_init(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 color_t* color_create(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
 /**
- * @method color_create_with_str
+ * @method color_from_str
  * 创建color对象。
  *
  * > 主要供脚本语言使用。
  *
- * @annotation ["constructor", "scriptable"]
+ * @annotation ["scriptable"]
+ * @param {color_t*} c color对象。
  * @param {const char*} str css类似的颜色值。
  *
  * @return {color_t*} color对象。
  */
-color_t* color_create_with_str(const char* str);
+color_t* color_from_str(color_t* c, const char* str);
 
 /**
  * @method color_r
@@ -180,6 +181,18 @@ uint8_t color_b(color_t* c);
  *
  */
 uint8_t color_a(color_t* c);
+
+/**
+ * @method color_cast
+ * 转换为color对象。
+ *
+ * > 供脚本语言使用。
+ * @annotation ["cast", "scriptable"]
+ * @param {color_t*} color color对象。
+ *
+ * @return {color_t*} color对象。
+ */
+color_t* color_cast(color_t* color);
 
 /**
  * @method color_destroy
