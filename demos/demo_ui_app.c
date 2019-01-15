@@ -32,7 +32,6 @@
 #include "tkc/time_now.h"
 #include "base/main_loop.h"
 #include "base/locale_info.h"
-#include "base/keys.h"
 #include "widgets/check_button.h"
 #include "widgets/progress_bar.h"
 #include "base/image_manager.h"
@@ -495,69 +494,8 @@ static ret_t show_preload_res_window() {
   return RET_OK;
 }
 
-static int32_t window_manager_find_top_index(widget_t* widget) {
-	return_value_if_fail(widget != NULL, -1);
-
-	WIDGET_FOR_EACH_CHILD_BEGIN_R(widget, iter, i)
-		const char* type = widget_get_type(iter);
-	if (tk_str_eq(type,WIDGET_TYPE_KEYBOARD )) {
-		return i;
-	}
-	else if (tk_str_eq(type, WIDGET_TYPE_NORMAL_WINDOW)) {
-		return i;
-	}
-	WIDGET_FOR_EACH_CHILD_END();
-
-	return -1;
-}
-
-widget_t* window_manager_get_top_window(widget_t* widget) {
-	int32_t index = window_manager_find_top_index(widget);
-	return_value_if_fail(index >= 0, NULL);
-
-	return widget_get_child(widget, index);
-}
-
-int widget_find_focused_index(widget_t* widget)
-{
-  return_value_if_fail(widget != NULL, RET_BAD_PARAMS);
-
-	WIDGET_FOR_EACH_CHILD_BEGIN(widget, iter, i)
-  if (tk_str_eq(iter->state, WIDGET_STATE_PRESSED)) {
-		return i;
-	}
-  WIDGET_FOR_EACH_CHILD_END()
-
-  return -1;
-}
-
-
-
-static ret_t window_manager_on_key(void* ctx, event_t* e)
-{
-	key_event_t* evt = (key_event_t*)e;
-	widget_t* widget = window_manager_get_top_window((widget_t*)ctx);
-	input_device_status_t input_device_status;
-	input_device_status_t* ids = input_device_status_init(&input_device_status);
-
-	if (evt->key == TK_KEY_RIGHT) {
-		widget_set_focus_next(widget);
-		return RET_OK;
-	}
-
-	input_device_status_on_input_event(ids, widget, e);
-
-	return RET_OK;
-}
-
 ret_t application_init() {
-	//widget_t* widget = window_manager();
-
   tk_ext_widgets_init();
-
- // widget_on(widget, EVT_KEY_DOWN, window_manager_on_key, widget);
-
-  navigate();
 
   return show_preload_res_window();
 }
