@@ -58,6 +58,10 @@
 * [progress\_circle](manual/progress_circle_t.md) 进度圆环控件。
 * [rich\_text](manual/rich_text_t.md) 图文混排控件。
 * [slide\_menu](manual/slide_menu_t.md) 左右滑动菜单控件。
+* [slide\_view](manual/slide_view_t.md) 滑动视图控件。
+* [svg\_image](manual/svg_image_t.md) SVG图片控件。
+* [switch](manual/switch_t.md) 开关控件。
+* [text\_selector](manual/text\_selector_t.md) 文本选择器控件。
 
 ### 画布
 
