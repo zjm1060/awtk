@@ -47,6 +47,7 @@ static ret_t keyboard_on_destroy(widget_t* widget) {
 static const widget_vtable_t s_keyboard_vtable = {.size = sizeof(keyboard_t),
                                                   .type = WIDGET_TYPE_KEYBOARD,
                                                   .is_window = TRUE,
+                                                  .is_keyboard = TRUE,
                                                   .clone_properties = s_keyboard_properties,
                                                   .persistent_properties = s_keyboard_properties,
                                                   .create = keyboard_create,
@@ -89,6 +90,7 @@ static ret_t keyboard_set_active_page(widget_t* button, const char* name) {
   return pages_set_active_by_name(parent, name);
 }
 
+#define STR_CLOSE "close"
 #define STR_RETURN "return"
 #define STR_ACTION "action"
 #define STR_KEY_SPACE "space"
@@ -104,7 +106,7 @@ static ret_t keyboard_on_button_click(void* ctx, event_t* e) {
   const char* key = strstr(name, STR_KEY_PREFIX);
   const char* page_name = strstr(name, STR_PAGE_PREFIX);
 
-  if (tk_str_eq(name, "close")) {
+  if (tk_str_eq(name, STR_CLOSE)) {
     input_method_request(im, NULL);
 
     return RET_OK;

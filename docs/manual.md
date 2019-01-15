@@ -52,6 +52,12 @@
 * [gif\_image](manual/gif_image_t.md) gif\_image控件。
 * [guage](manual/guage_t.md) 仪表控件。
 * [guage\_pointer](manual/guage_pointer_t.md) 仪表指针控件。
+* [image\_animation](manual/image_animation_t.md) 图片动画控件。
+* [image\_value](manual/image_value_t.md) 图片值控件。
+* [keyboard](manual/keyboard_t.md)  软键盘控件。
+* [progress\_circle](manual/progress_circle_t.md) 进度圆环控件。
+* [rich\_text](manual/rich_text_t.md) 图文混排控件。
+* [slide\_menu](manual/slide_menu_t.md) 左右滑动菜单控件。
 
 ### 画布
 
