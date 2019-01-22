@@ -1,13 +1,34 @@
 # 最新动态
+* 2019/01/18
+  * 修改valgrind发些的问题，并增加一些脚本。
+
+* 2019/01/17
+  * 增加文档。
+
+* 2019/01/16
+  * 整理API文档：list\_view/list\_view\_h/list\_view\_item/scroll\_view/scroll\_bar
+  * 整理API文档：self\_layouter/self\_layouter\_default/children\_layouter/children\_layouter\_default
+  * 去掉array类，使用darray类代替。
+  * 修改valgrind发现的泄露内存问题。
+
+* 2019/01/16
+  * 增加darray类，逐步替换以前的array类。
+  * 增加widget pool用于控件的缓存和重复利用，可以通过WITH\_WIDGET\_POOL启用。
+  * 增加widget\_create函数，简化子类控件的创建函数，同时让通用控件本身的由widget pool集中管理。
+  * 使用array的地方替换为darray。
+  * 更新stm32相关工程。
+
 * 2019/01/15
   * 整理API文档：progress\_circle/rich\_text/slide\_menu/slide\_view/svg\_image/switch
-  * 整理API文档：text\_selector
+  * 整理API文档：text\_selector/time\_clock/digit\_clock
   * 增加progress\_circle c语言demo。
   * 增加slide\_menu c语言demo。
   * 增加slide\_view c语言demo。
   * 增加svg\_image c语言demo。
   * 增加switch c语言demo。
   * 增加text\_selector c语言demo。
+  * 增加time\_clock c语言demo。
+  * 增加digit\_clock c语言demo。
   * 增加INPUT\_CUSTOM用于关闭系统缺省软键盘。
 
 * 2019/01/14

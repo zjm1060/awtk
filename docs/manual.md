@@ -61,7 +61,14 @@
 * [slide\_view](manual/slide_view_t.md) 滑动视图控件。
 * [svg\_image](manual/svg_image_t.md) SVG图片控件。
 * [switch](manual/switch_t.md) 开关控件。
-* [text\_selector](manual/text\_selector_t.md) 文本选择器控件。
+* [text\_selector](manual/text_selector_t.md) 文本选择器控件。
+* [time\_clock](manual/time_clock_t.md) 模拟时钟控件。
+* [digit\_clock](manual/digit_clock_t.md) 数字时钟控件。
+* [list\_view](manual/list_view_t.md) 列表视图控件。
+* [list\_view\_h](manual/list_view_h_t.md) 水平列表视图控件。
+* [list\_item](manual/list_item_t.md) 列表项控件。
+* [scroll\_bar](manual/scroll_bar_t.md) 滚动条控件。
+* [scroll\_view](manual/scroll_view_t.md) 滚动视图控件。
 
 ### 画布
 
@@ -157,16 +164,23 @@
 
 * [idle\_info](manual/idle_info_t.md) 单个idle的信息。 
 
-### 控件动画
-
-### 窗口动画
-
 ### 布局器
+  
+![self\_layouter](../docs/images/layout_self_layouter.png)
 
+![children\_layouter](../docs/images/layout_children_layouter.png)
+
+* [self\_layouter](manual/self_layouter_t.md) 控件自身排版布局器的接口
+
+* [children\_layouter](manual/children_layouter_t.md) 子控件排版布局器的接口
+
+* [self\_layouter\_default](manual/self_layouter_default_t.md) 缺省的控件自身布局算法实现。
+
+* [children\_layouter\_default](manual/children_layouter_default_t.md) 缺省的子控件布局算法实现。
 
 ## 二、基本函数库
 
-* [array](manual/array_t.md) 动态数组。
+* [darray](manual/darray_t.md) 动态数组。
 * [slist](manual/slist_t.md) 单向链表。
 * [memory](manual/tk_mem_t.md) 内存管理相关函数和宏。
 * [rgba](manual/rgba_t.md) RGBA颜色值。
