@@ -227,7 +227,7 @@ typedef enum _app_type_t {
 
 #ifndef TK_MAX_FPS
 #if defined(LINUX) || defined(MACOS) || defined(WIN32)
-#define TK_MAX_FPS 60
+#define TK_MAX_FPS 90
 #else
 #define TK_MAX_FPS 100
 #endif
